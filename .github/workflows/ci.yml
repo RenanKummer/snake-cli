@@ -11,9 +11,9 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2.3.1
-    - name: make
+    - name: Build
       run: make
-    - name: upload workspace artifact
+    - name: Upload workspace artifact
       uses: actions/upload-artifact@v2
       with:
         name: workspace
@@ -23,19 +23,19 @@ jobs:
     runs-on: windows-latest
     needs: [ build ]
     steps:
-    - name: download workspace artifact
+    - name: Download workspace artifact
       uses: actions/download-artifact@v2
       with:
         name: workspace
-    - name: make check
+    - name: Check
       run: make check
   
   clear:
     runs-on: windows-latest
     needs: [ build, test ]
     steps:
-    - name: delete workflow artifacts
+    - name: Delete workflow artifacts
       uses: GeekyEggo/delete-artifact@v1.0.0
       with:
-        name: build
+        name: workspace
         failOnError: false
