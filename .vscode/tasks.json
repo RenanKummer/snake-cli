@@ -1,0 +1,38 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "detail": "Build application executable",
+            "type": "shell",
+            "command": "mingw32-make",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "rebuild",
+            "detail": "Clean and rebuild application executable",
+            "type": "shell",
+            "dependsOn": ["clean", "build"],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "test",
+            "detail": "Run unit tests",
+            "type": "shell",
+            "command": "mingw32-make check",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "clean",
+            "detail": "Clean build directories",
+            "type": "shell",
+            "command": "mingw32-make clean"
+        }
+    ]
+}
