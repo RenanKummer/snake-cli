@@ -12,7 +12,7 @@ all: build
 build: build-main
 
 build-main: build-dir snake-cli
-build-test: clean build-dir util.StringTest
+build-test: clean-test build-dir util.StringTest
 
 # =============================================================================
 #                                  Constants
