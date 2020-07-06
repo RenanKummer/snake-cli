@@ -1,5 +1,5 @@
 # Description
-The classic Snake game from Nokia made for Windows' command line (either PowerShell or CMD). This project is the final assignment of my university class _Algorithms & Programming_.
+The classic Snake game from Nokia for Windows command line (either PowerShell or CMD). This project is the final assignment of my university class _Algorithms & Programming_.
 
 # How to Build & Test
 ### **Prerequisites:**
