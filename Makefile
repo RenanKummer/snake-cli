@@ -9,10 +9,7 @@
 #                                  Build All
 # =============================================================================
 all: build
-build: build-main
-
-build-main: build-dir snake-cli
-build-test: clean-test build-dir util.StringTest
+build: build-dir snake-cli
 
 # =============================================================================
 #                                  Constants
@@ -34,8 +31,7 @@ SCRIPTS_DIR   = $(RESOURCES_DIR)/scripts
 # =============================================================================
 snake-cli: util
 	@echo building $(MAIN_BIN_DIR)/snake-cli.exe
-	@gcc -o $(MAIN_BIN_DIR)/snake-cli.exe $(SRC_DIR)/Main.c\
-	    $(MAIN_OBJ_DIR)/String.o
+	@gcc -o $(MAIN_BIN_DIR)/snake-cli.exe $(SRC_DIR)/Main.c $(MAIN_OBJ_DIR)/*.o
 
 
 # =============================================================================
@@ -82,7 +78,7 @@ build-dir:
 # =============================================================================
 #                                 Unit Tests
 # =============================================================================
-check: build-test
+check: clean-test build-dir util.StringTest
 	@echo running unit tests
 	@pwsh $(SCRIPTS_DIR)/RunTests.ps1
 
