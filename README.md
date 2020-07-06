@@ -2,23 +2,23 @@
 The classic Snake game from Nokia made for Windows' command line (either PowerShell or CMD). This project is the final assignment of my university class _Algorithms & Programming_.
 
 # How to Build & Test
-### **Local Development**
-**Prerequisites:**
-  - Microsoft Windows 10
-  - [MinGW-w64](https://sourceforge.net/projects/mingw-w64)
-    - Add `{mingw-w64 directory}\bin` to your system's _path_ environment variable.
-  - [PowerShell 7](https://github.com/PowerShell/powershell/releases)
-    - Add `{powershell directory}\{version}` to your system's _path_ environment variable.
-  - [Visual Studio Code](https://code.visualstudio.com)
+### **Prerequisites:**
+- Microsoft Windows 10
+- [MinGW-w64](https://sourceforge.net/projects/mingw-w64)
+  - Add `{mingw-w64 directory}\bin` to your system's _path_ environment variable.
+- [PowerShell 7](https://github.com/PowerShell/powershell/releases)
+  - Add `{powershell directory}\{version}` to your system's _path_ environment variable.
+- [Visual Studio Code](https://code.visualstudio.com)
 
-**On Visual Studio Code:**
+<br>
 
+### **On Visual Studio Code:**
 This project has custom-built tasks for Visual Studio Code. To run tasks either
 
 1. Go to `Terminal\Run Task...`, or
 2. Press `Ctrl + P` and enter `task [task-name]`.
 
-The available tasks are described below.
+<br>
 
 | Task      | Description                              |
 |----------:|------------------------------------------|
@@ -27,7 +27,9 @@ The available tasks are described below.
 | _test_    | Run unit tests                           |
 | _clean_   | Clean build directories                  |
 
-**On other editors:**
+<br>
+
+### **On other editors:**
 
 To build the application, run
 ```powershell
@@ -39,7 +41,7 @@ To unit test the application, run
 mingw32-make check
 ```
 
-### **Continuous Integration**
+# Continuous Integration
 This project performs [Continuous Integration using GitHub Actions](https://github.com/RenanKummer/snake-cli/actions?query=workflow%3A%22Continuous+Integration%22) on push and pull request events to `master` branch.
 
 # University Info
