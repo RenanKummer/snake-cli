@@ -10,8 +10,6 @@ The classic Snake game from Nokia made for Windows' command line (either PowerSh
   - Add `{powershell directory}\{version}` to your system's _path_ environment variable.
 - [Visual Studio Code](https://code.visualstudio.com)
 
-<br>
-
 ### **On Visual Studio Code:**
 This project has custom-built tasks for Visual Studio Code. To run tasks either
 
@@ -26,8 +24,6 @@ This project has custom-built tasks for Visual Studio Code. To run tasks either
 | _rebuild_ | Clean and rebuild application executable |
 | _test_    | Run unit tests                           |
 | _clean_   | Clean build directories                  |
-
-<br>
 
 ### **On other editors:**
 
