@@ -4,11 +4,11 @@ The classic Snake game from Nokia for Windows command line (either PowerShell or
 # How to Build & Test
 ### **Prerequisites:**
 - [Microsoft Windows 10](https://www.microsoft.com/windows)
+- [Visual Studio Code](https://code.visualstudio.com)
 - [MinGW-w64](https://sourceforge.net/projects/mingw-w64)
   - Add `{mingw-w64 directory}\bin` to your system's _path_ environment variable.
 - [PowerShell 7](https://github.com/PowerShell/powershell/releases)
   - Add `{powershell directory}\{version}` to your system's _path_ environment variable.
-- [Visual Studio Code](https://code.visualstudio.com)
 
 ### **On Visual Studio Code:**
 This project has custom-built tasks for Visual Studio Code. To run tasks either
