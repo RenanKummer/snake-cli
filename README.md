@@ -3,7 +3,7 @@ The classic Snake game from Nokia for Windows command line (either PowerShell or
 
 # How to Build & Test
 ### **Prerequisites:**
-- Microsoft Windows 10
+- [Microsoft Windows 10](https://www.microsoft.com/windows)
 - [MinGW-w64](https://sourceforge.net/projects/mingw-w64)
   - Add `{mingw-w64 directory}\bin` to your system's _path_ environment variable.
 - [PowerShell 7](https://github.com/PowerShell/powershell/releases)
