@@ -29,7 +29,7 @@ SCRIPTS_DIR   = $(RESOURCES_DIR)/scripts
 # =============================================================================
 #                              Main Executables
 # =============================================================================
-snake-cli: util
+snake-cli: type
 	@echo building $(MAIN_BIN_DIR)/snake-cli.exe
 	@gcc -o $(MAIN_BIN_DIR)/snake-cli.exe $(SRC_DIR)/Main.c $(MAIN_OBJ_DIR)/*.o
 
@@ -37,34 +37,34 @@ snake-cli: util
 # =============================================================================
 #                              Test Executables
 # =============================================================================
-util.StringTest: UnitTest.o String.o StringTest.o
-	@echo building $(TEST_BIN_DIR)/util.String.exe
-	@gcc -o $(TEST_BIN_DIR)/util.String.exe $(TEST_OBJ_DIR)/StringTest.o\
+type.StringTest: UnitTest.o String.o StringTest.o
+	@echo building $(TEST_BIN_DIR)/type.String.exe
+	@gcc -o $(TEST_BIN_DIR)/type.String.exe $(TEST_OBJ_DIR)/StringTest.o\
 	    $(MAIN_OBJ_DIR)/UnitTest.o $(MAIN_OBJ_DIR)/String.o
 
 
 # =============================================================================
 #                                Source Files
 # =============================================================================
-util: String.o
+type: String.o
 
 String.o:
-	@echo compiling $(SRC_DIR)/util/String.c
-	@gcc -o $(MAIN_OBJ_DIR)/String.o -c $(SRC_DIR)/util/String.c -Iinclude
+	@echo compiling $(SRC_DIR)/type/String.c
+	@gcc -o $(MAIN_OBJ_DIR)/String.o -c $(SRC_DIR)/type/String.c -Iinclude
 
 UnitTest.o:
-	@echo compiling $(SRC_DIR)/util/UnitTest.c
-	@gcc -o $(MAIN_OBJ_DIR)/UnitTest.o -c $(SRC_DIR)/util/UnitTest.c -Iinclude
+	@echo compiling $(SRC_DIR)/test/UnitTest.c
+	@gcc -o $(MAIN_OBJ_DIR)/UnitTest.o -c $(SRC_DIR)/test/UnitTest.c -Iinclude
 
 
 # =============================================================================
 #                                 Test Files
 # =============================================================================
-# util/
+# type
 StringTest.o:
-	@echo compiling $(TEST_DIR)/util/StringTest.c
+	@echo compiling $(TEST_DIR)/type/StringTest.c
 	@gcc -o $(TEST_OBJ_DIR)/StringTest.o\
-	     -c $(TEST_DIR)/util/StringTest.c -Iinclude
+	     -c $(TEST_DIR)/type/StringTest.c -Iinclude
 
 
 # =============================================================================
@@ -78,7 +78,7 @@ build-dir:
 # =============================================================================
 #                                 Unit Tests
 # =============================================================================
-check: clean-test build-dir util.StringTest
+check: clean-test build-dir type.StringTest
 	@echo running unit tests
 	@pwsh $(SCRIPTS_DIR)/RunTests.ps1
 

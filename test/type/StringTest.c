@@ -1,5 +1,5 @@
-#include "util/String.h"
-#include "util/UnitTest.h"
+#include "test/UnitTest.h"
+#include "type/String.h"
 
 TestResult testEqualsString_Equal();
 TestResult testEqualsString_NotEqual();
@@ -13,7 +13,7 @@ int main()
         testEqualsString_NotEqual()
     };
 
-    const char *const identifier = "util.StringTest";
+    const char *const identifier = "type.StringTest";
     return printTestResults(identifier, results, NUM_TESTS);
 }
 
