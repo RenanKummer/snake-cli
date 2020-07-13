@@ -31,7 +31,8 @@ SCRIPTS_DIR   = $(RESOURCES_DIR)/scripts
 # =============================================================================
 snake-cli: type ui
 	@echo building $(MAIN_BIN_DIR)/snake-cli.exe
-	@gcc -o $(MAIN_BIN_DIR)/snake-cli.exe $(SRC_DIR)/Main.c $(MAIN_OBJ_DIR)/*.o -Iinclude
+	@gcc -o $(MAIN_BIN_DIR)/snake-cli.exe $(SRC_DIR)/Main.c\
+	    $(MAIN_OBJ_DIR)/*.o -Iinclude
 
 
 # =============================================================================
