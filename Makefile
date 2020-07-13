@@ -29,9 +29,9 @@ SCRIPTS_DIR   = $(RESOURCES_DIR)/scripts
 # =============================================================================
 #                              Main Executables
 # =============================================================================
-snake-cli: type
+snake-cli: type ui
 	@echo building $(MAIN_BIN_DIR)/snake-cli.exe
-	@gcc -o $(MAIN_BIN_DIR)/snake-cli.exe $(SRC_DIR)/Main.c $(MAIN_OBJ_DIR)/*.o
+	@gcc -o $(MAIN_BIN_DIR)/snake-cli.exe $(SRC_DIR)/Main.c $(MAIN_OBJ_DIR)/*.o -Iinclude
 
 
 # =============================================================================
@@ -47,15 +47,20 @@ type.StringTest: UnitTest.o String.o StringTest.o
 #                                Source Files
 # =============================================================================
 type: String.o
-
-String.o:
-	@echo compiling $(SRC_DIR)/type/String.c
-	@gcc -o $(MAIN_OBJ_DIR)/String.o -c $(SRC_DIR)/type/String.c -Iinclude
+ui: CommandLineInterface.o
 
 UnitTest.o:
 	@echo compiling $(SRC_DIR)/test/UnitTest.c
 	@gcc -o $(MAIN_OBJ_DIR)/UnitTest.o -c $(SRC_DIR)/test/UnitTest.c -Iinclude
 
+String.o:
+	@echo compiling $(SRC_DIR)/type/String.c
+	@gcc -o $(MAIN_OBJ_DIR)/String.o -c $(SRC_DIR)/type/String.c -Iinclude
+
+CommandLineInterface.o:
+	@echo compiling $(SRC_DIR)/ui/CommandLineInterface.c
+	@gcc -o $(MAIN_OBJ_DIR)/CommandLineInterface.o\
+	     -c $(SRC_DIR)/ui/CommandLineInterface.c -Iinclude
 
 # =============================================================================
 #                                 Test Files
