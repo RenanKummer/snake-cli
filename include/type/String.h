@@ -6,9 +6,12 @@
  * @author Renan Kummer [ GitHub: @RenanKummer ]
  */
 #include "type/Boolean.h"
-
 #include <string.h>
 
 Boolean equalsString(const char *const str1, const char *const str2);
+
+char* concatenateStrings(const char *const str1, const char *const str2);
+
+char* castIntToString(const int number);
 
 #endif // INCLUDE_TYPE_STRING_H
