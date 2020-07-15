@@ -43,6 +43,12 @@ type.StringTest: UnitTest.o String.o StringTest.o
 	@gcc -o $(TEST_BIN_DIR)/type.String.exe $(TEST_OBJ_DIR)/StringTest.o\
 	    $(MAIN_OBJ_DIR)/UnitTest.o $(MAIN_OBJ_DIR)/String.o
 
+testCommandLineInterface: CommandLineInterface.o CommandLineInterfaceTest.o\
+                          String.o
+	@echo building $(MAIN_BIN_DIR)/testCommandLineInterface.exe
+	@gcc -o $(MAIN_BIN_DIR)/testCommandLineInterface.exe\
+	    $(TEST_OBJ_DIR)/CommandLineInterfaceTest.o\
+		$(MAIN_OBJ_DIR)/CommandLineInterface.o $(MAIN_OBJ_DIR)/String.o
 
 # =============================================================================
 #                                Source Files
@@ -72,6 +78,11 @@ StringTest.o:
 	@gcc -o $(TEST_OBJ_DIR)/StringTest.o\
 	     -c $(TEST_DIR)/type/StringTest.c -Iinclude
 
+# ui
+CommandLineInterfaceTest.o:
+	@echo compiling $(TEST_DIR)/ui/CommandLineInterfaceTest.c
+	@gcc -o $(TEST_OBJ_DIR)/CommandLineInterfaceTest.o\
+	     -c $(TEST_DIR)/ui/CommandLineInterfaceTest.c -Iinclude
 
 # =============================================================================
 #                              Build Directories
@@ -84,7 +95,7 @@ build-dir:
 # =============================================================================
 #                                 Unit Tests
 # =============================================================================
-check: clean-test build-dir type.StringTest
+check: clean-test build-dir type.StringTest testCommandLineInterface
 	@echo running unit tests
 	@pwsh $(SCRIPTS_DIR)/RunTests.ps1
 
