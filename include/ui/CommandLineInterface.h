@@ -8,5 +8,6 @@
 #include "type/Boolean.h"
 
 Boolean resizeWindow(const int height, const int width);
+void clearWindow();
 
 #endif // INCLUDE_UI_COMMANDLINEINTERFACE_H

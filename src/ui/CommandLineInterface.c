@@ -28,3 +28,8 @@ Boolean resizeWindow(const int height, const int width)
 
     return false;
 }
+
+void clearWindow()
+{
+    system("cls");
+}
