@@ -39,21 +39,28 @@ snake-cli: type ui
 #                              Test Executables
 # =============================================================================
 type.StringTest: UnitTest.o String.o StringTest.o
-	@echo building $(TEST_BIN_DIR)/type.String.exe
-	@gcc -o $(TEST_BIN_DIR)/type.String.exe $(TEST_OBJ_DIR)/StringTest.o\
+	@echo building $(TEST_BIN_DIR)/type.StringTest.exe
+	@gcc -o $(TEST_BIN_DIR)/type.StringTest.exe $(TEST_OBJ_DIR)/StringTest.o\
 	    $(MAIN_OBJ_DIR)/UnitTest.o $(MAIN_OBJ_DIR)/String.o
 
-testCommandLineInterface: CommandLineInterface.o CommandLineInterfaceTest.o\
-                          String.o
-	@echo building $(MAIN_BIN_DIR)/testCommandLineInterface.exe
-	@gcc -o $(MAIN_BIN_DIR)/testCommandLineInterface.exe\
+type.WindowSizeTest: UnitTest.o WindowSize.o WindowSizeTest.o
+	@echo building $(TEST_BIN_DIR)/type.WindowSizeTest.exe
+	@gcc -o $(TEST_BIN_DIR)/type.WindowSizeTest.exe\
+	    $(TEST_OBJ_DIR)/WindowSizeTest.o $(MAIN_OBJ_DIR)/UnitTest.o\
+		$(MAIN_OBJ_DIR)/WindowSize.o
+
+ui.CommandLineInterfaceTest: CommandLineInterface.o CommandLineInterfaceTest.o\
+                             String.o WindowSize.o
+	@echo building $(MAIN_BIN_DIR)/ui.CommandLineInterfaceTest.exe
+	@gcc -o $(MAIN_BIN_DIR)/ui.CommandLineInterfaceTest.exe\
 	    $(TEST_OBJ_DIR)/CommandLineInterfaceTest.o\
-		$(MAIN_OBJ_DIR)/CommandLineInterface.o $(MAIN_OBJ_DIR)/String.o
+		$(MAIN_OBJ_DIR)/CommandLineInterface.o $(MAIN_OBJ_DIR)/String.o\
+		$(MAIN_OBJ_DIR)/WindowSize.o
 
 # =============================================================================
 #                                Source Files
 # =============================================================================
-type: String.o
+type: String.o WindowSize.o
 ui: CommandLineInterface.o
 
 UnitTest.o:
@@ -63,6 +70,11 @@ UnitTest.o:
 String.o:
 	@echo compiling $(SRC_DIR)/type/String.c
 	@gcc -o $(MAIN_OBJ_DIR)/String.o -c $(SRC_DIR)/type/String.c -Iinclude
+
+WindowSize.o:
+	@echo compiling $(SRC_DIR)/type/WindowSize.c
+	@gcc -o $(MAIN_OBJ_DIR)/WindowSize.o\
+	     -c $(SRC_DIR)/type/WindowSize.c -Iinclude
 
 CommandLineInterface.o:
 	@echo compiling $(SRC_DIR)/ui/CommandLineInterface.c
@@ -77,6 +89,11 @@ StringTest.o:
 	@echo compiling $(TEST_DIR)/type/StringTest.c
 	@gcc -o $(TEST_OBJ_DIR)/StringTest.o\
 	     -c $(TEST_DIR)/type/StringTest.c -Iinclude
+
+WindowSizeTest.o:
+	@echo compiling $(TEST_DIR)/type/WindowSizeTest.c
+	@gcc -o $(TEST_OBJ_DIR)/WindowSizeTest.o\
+	     -c $(TEST_DIR)/type/WindowSizeTest.c -Iinclude
 
 # ui
 CommandLineInterfaceTest.o:
@@ -95,7 +112,8 @@ build-dir:
 # =============================================================================
 #                                 Unit Tests
 # =============================================================================
-check: clean-test build-dir type.StringTest testCommandLineInterface
+check: clean-test build-dir type.StringTest type.WindowSizeTest\
+       ui.CommandLineInterfaceTest
 	@echo running unit tests
 	@pwsh $(SCRIPTS_DIR)/RunTests.ps1
 
