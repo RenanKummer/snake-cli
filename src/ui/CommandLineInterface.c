@@ -1,13 +1,41 @@
 #include "type/String.h"
+#include "type/WindowSize.h"
 #include "ui/CommandLineInterface.h"
-
 #include <windows.h>
 
-Boolean resizeWindow(const int height, const int width)
+WindowCoordinate moveCursor(
+    const WindowSize size, 
+    const WindowCoordinate coordinate
+)
 {
-    if ((height > 0) && (width > 0)) {
-        const char *const heightString = castIntToString(height);
-        const char *const widthString = castIntToString(width);
+    if (isValidWindowSize(size)) {
+        WindowCoordinate realCoordinate = {
+            coordinate.height % size.height,
+            coordinate.width % size.width
+        };
+
+        if (isValidWindowCoordinate(size, coordinate)) {
+            COORD microsoftWindowsCoordinate = 
+                {coordinate.width, coordinate.height};
+            
+            SetConsoleCursorPosition(
+                GetStdHandle(STD_OUTPUT_HANDLE), 
+                microsoftWindowsCoordinate
+            );
+        }
+
+        return realCoordinate;
+    }
+
+    WindowCoordinate defaultCoordinate = {0, 0};
+    return defaultCoordinate;
+}
+
+Boolean resizeWindow(const WindowSize windowSize)
+{
+    if (isValidWindowSize(windowSize)) {
+        const char *const heightString = castIntToString(windowSize.height);
+        const char *const widthString = castIntToString(windowSize.width);
 
         char *modeWithHeight = concatenateStrings("mode ", widthString);
         free((void*) widthString);
