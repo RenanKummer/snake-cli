@@ -31,6 +31,13 @@ WindowCoordinate moveCursor(
     return defaultCoordinate;
 }
 
+void wait(int miliseconds)
+{
+    if (miliseconds > 0) {
+        Sleep(miliseconds);
+    }
+}
+
 Boolean resizeWindow(const WindowSize windowSize)
 {
     if (isValidWindowSize(windowSize)) {

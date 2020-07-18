@@ -12,17 +12,20 @@
 typedef enum Option
 {
     MOVE_CURSOR   = 1,
-    RESIZE_WINDOW = 2,
-    CLEAR_WINDOW  = 3
+    WAIT          = 2,
+    RESIZE_WINDOW = 3,
+    CLEAR_WINDOW  = 4
 } Option;
 
 void printOptions();
 Option readOption();
 
 Boolean isMoveCursorOption(Option option);
+Boolean isWaitOption(Option option);
 Boolean isResizeWindowOption(Option option);
 Boolean isClearWindowOption(Option option);
 void runMoveCursor();
+void runWait();
 void runResizeWindow();
 void runClearWindow();
 
@@ -34,6 +37,8 @@ int main()
 
         if (isMoveCursorOption(option)) {
             runMoveCursor();
+        } else if (isWaitOption(option)) {
+            runWait();
         } else if (isResizeWindowOption(option)) {
             runResizeWindow();
         } else if (isClearWindowOption(option)) {
@@ -47,10 +52,12 @@ void printOptions()
     printf(
         "Test CommandLineInterface\n"
         "  %2d: moveCursor()\n"
+        "  %2d: wait()\n"
         "  %2d: resizeWindow()\n"
         "  %2d: clearWindow()\n"
         "\n",
         MOVE_CURSOR,
+        WAIT,
         RESIZE_WINDOW, 
         CLEAR_WINDOW
     );
@@ -69,6 +76,11 @@ Option readOption()
 Boolean isMoveCursorOption(Option option)
 {
     return option == MOVE_CURSOR;
+}
+
+Boolean isWaitOption(Option option)
+{
+    return option == WAIT;
 }
 
 Boolean isResizeWindowOption(Option option)
@@ -109,9 +121,20 @@ void runMoveCursor()
     printf("X");
     WindowCoordinate firstCoordinate = {0, 0};
     moveCursor(windowSize, firstCoordinate);    
-    Sleep(3000);
+    wait(3000);
     
     clearWindow();
+}
+
+void runWait()
+{
+    printf("Waiting 3 seconds...\n");
+    wait(3000);
+    printf("Waiting 2 seconds...\n");
+    wait(2000);
+    printf("Waiting 1 seconds...\n");
+    wait(1000);
+    printf("And we're done!\n\n");
 }
 
 void runResizeWindow()
@@ -137,7 +160,7 @@ void runClearWindow()
         "  And last, but not least, here.\n"
     );
 
-    Sleep(1000);
+    wait(1000);
 
     clearWindow();
 }

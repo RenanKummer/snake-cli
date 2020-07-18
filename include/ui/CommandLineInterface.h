@@ -14,6 +14,8 @@ WindowCoordinate moveCursor(
     const WindowCoordinate coordinate
 );
 
+void wait(int miliseconds);
+
 Boolean resizeWindow(const WindowSize windowSize);
 void clearWindow();
 
