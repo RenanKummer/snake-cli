@@ -1,6 +1,7 @@
 #include "type/String.h"
-#include "type/WindowSize.h"
+#include "type/WindowCoordinate.h"
 #include "ui/CommandLineInterface.h"
+
 #include <windows.h>
 
 WindowCoordinate moveCursor(
@@ -8,27 +9,29 @@ WindowCoordinate moveCursor(
     const WindowCoordinate coordinate
 )
 {
-    if (isValidWindowSize(size)) {
-        WindowCoordinate realCoordinate = {
-            coordinate.height % size.height,
-            coordinate.width % size.width
-        };
-
-        if (isValidWindowCoordinate(size, coordinate)) {
-            COORD microsoftWindowsCoordinate = 
-                {coordinate.width, coordinate.height};
-            
-            SetConsoleCursorPosition(
-                GetStdHandle(STD_OUTPUT_HANDLE), 
-                microsoftWindowsCoordinate
-            );
-        }
-
-        return realCoordinate;
+    COORD microsoftWindowsCoordinate;
+    if (isValidWindowCoordinate(coordinate, size)) {
+        microsoftWindowsCoordinate.X = coordinate.width;
+        microsoftWindowsCoordinate.Y = coordinate.height;
+    } else {
+        microsoftWindowsCoordinate.X = getDefaultWindowCoordinate().width;
+        microsoftWindowsCoordinate.Y = getDefaultWindowCoordinate().height;
     }
 
-    WindowCoordinate defaultCoordinate = {0, 0};
-    return defaultCoordinate;
+    SetConsoleCursorPosition(
+        GetStdHandle(STD_OUTPUT_HANDLE), 
+        microsoftWindowsCoordinate
+    );
+
+    WindowCoordinate finalCoordinate = 
+        {microsoftWindowsCoordinate.Y, microsoftWindowsCoordinate.X};
+    return finalCoordinate;
+}
+
+WindowCoordinate getDefaultWindowCoordinate()
+{
+    WindowCoordinate defaultWindowCoordinate = {0, 0};
+    return defaultWindowCoordinate;
 }
 
 void wait(int miliseconds)

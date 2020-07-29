@@ -1,5 +1,5 @@
 #include "type/Boolean.h"
-#include "type/WindowSize.h"
+#include "type/WindowCoordinate.h"
 #include "ui/CommandLineInterface.h"
 #include <windows.h>
 #include <stdio.h>
