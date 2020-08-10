@@ -7,7 +7,6 @@
  * @author Renan Kummer [ GitHub: @RenanKummer ]
  */
 #include "type/Boolean.h"
-#include <conio.h>
 
 /**
  * Move cursor in command line window.
@@ -50,5 +49,17 @@ void clearWindow();
  * @param miliseconds The time to wait in miliseconds.
  */
 void wait(int miliseconds);
+
+/**
+ * Check if any key has been hit.
+ * 
+ * @return true if key is hit, false otherwise.
+ */
+Boolean hasKeyboardHit();
+
+/**
+ * @return Keyboard hit without echoing key.
+ */
+int readKeyboardHitNoEcho();
 
 #endif // INCLUDE_UI_COMMANDLINEINTERFACE_H

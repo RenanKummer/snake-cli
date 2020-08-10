@@ -14,7 +14,8 @@ typedef enum Option
     MOVE_CURSOR   = 1,
     WAIT          = 2,
     RESIZE_WINDOW = 3,
-    CLEAR_WINDOW  = 4
+    CLEAR_WINDOW  = 4,
+    KEYBOARD_HIT  = 5
 } Option;
 
 void printOptions();
@@ -24,10 +25,12 @@ Boolean isMoveCursorOption(Option option);
 Boolean isWaitOption(Option option);
 Boolean isResizeWindowOption(Option option);
 Boolean isClearWindowOption(Option option);
+Boolean isKeyboardHitOption(Option option);
 void runMoveCursor();
 void runWait();
 void runResizeWindow();
 void runClearWindow();
+void runKeyboardHit();
 
 int main()
 {
@@ -43,6 +46,8 @@ int main()
             runResizeWindow();
         } else if (isClearWindowOption(option)) {
             runClearWindow();
+        } else if (isKeyboardHitOption(option)) {
+            runKeyboardHit();
         }
     }    
 }
@@ -55,11 +60,13 @@ void printOptions()
         "  %2d: wait()\n"
         "  %2d: resizeWindow()\n"
         "  %2d: clearWindow()\n"
+        "  %2d: keyboardHit()\n"
         "\n",
         MOVE_CURSOR,
         WAIT,
         RESIZE_WINDOW, 
-        CLEAR_WINDOW
+        CLEAR_WINDOW,
+        KEYBOARD_HIT
     );
 }
 
@@ -91,6 +98,11 @@ Boolean isResizeWindowOption(Option option)
 Boolean isClearWindowOption(Option option)
 {
     return option == CLEAR_WINDOW;
+}
+
+Boolean isKeyboardHitOption(Option option)
+{
+    return option == KEYBOARD_HIT;
 }
 
 void runMoveCursor()
@@ -162,5 +174,20 @@ void runClearWindow()
 
     wait(1000);
 
+    clearWindow();
+}
+
+void runKeyboardHit()
+{
+    printf("Waiting for keyboard hit...\n");
+
+    while (!hasKeyboardHit()) {
+        // Do nothing.
+    }
+
+    int key = readKeyboardHitNoEcho();
+    printf("You entered key %d.\n", key);
+
+    wait(3000);
     clearWindow();
 }

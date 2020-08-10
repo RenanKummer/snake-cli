@@ -3,6 +3,7 @@
 #include "util/StringUtils.h"
 
 #include <windows.h>
+#include <conio.h>
 
 WindowCoordinate moveCursor(
     const WindowSize size, 
@@ -70,4 +71,14 @@ Boolean resizeWindow(const WindowSize windowSize)
 void clearWindow()
 {
     system("cls");
+}
+
+Boolean hasKeyboardHit()
+{
+    return kbhit();
+}
+
+int readKeyboardHitNoEcho()
+{
+    return getch();
 }
