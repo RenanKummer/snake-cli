@@ -21,7 +21,11 @@ int printTestResults(
             numPassed += (results[i].hasPassed) ? 1 : 0;
         }
 
-        printf("%d/%d tests have passed.\n\n", numPassed, resultsSize);
+        printf("%d/%d tests have passed.\n", numPassed, resultsSize);
+        if (numPassed != resultsSize) {
+            printf("\n");
+        }
+
         for (int i = 0; i < resultsSize; i++) {
             if (!results[i].hasPassed) {
                 printf("    [Fail] %s\n", results[i].testName);
@@ -30,7 +34,7 @@ int printTestResults(
         }
         printf("\n");
     } else {
-        printf("No tests.\n");
+        printf("No tests.\n\n");
     }
 
     if (hasPassed) {
