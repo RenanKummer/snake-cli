@@ -29,7 +29,7 @@ SCRIPTS_DIR   = $(RESOURCES_DIR)/scripts
 # =============================================================================
 #                              Main Executables
 # =============================================================================
-snake-cli: type ui
+snake-cli: type ui util
 	@echo building $(MAIN_BIN_DIR)/snake-cli.exe
 	@gcc -o $(MAIN_BIN_DIR)/snake-cli.exe $(SRC_DIR)/Main.c\
 	    $(MAIN_OBJ_DIR)/*.o -Iinclude
@@ -38,58 +38,65 @@ snake-cli: type ui
 # =============================================================================
 #                              Test Executables
 # =============================================================================
-type.StringTest: UnitTest.o String.o StringTest.o
-	@echo building $(TEST_BIN_DIR)/type.StringTest.exe
-	@gcc -o $(TEST_BIN_DIR)/type.StringTest.exe $(TEST_OBJ_DIR)/StringTest.o\
-	    $(MAIN_OBJ_DIR)/UnitTest.o $(MAIN_OBJ_DIR)/String.o
+test-type: type.WindowCoordinateTest
+test-ui: ui.CommandLineInterfaceTest
+test-util: util.StringUtilsTest
 
 type.WindowCoordinateTest: UnitTest.o WindowCoordinate.o WindowCoordinateTest.o
 	@echo building $(TEST_BIN_DIR)/type.WindowCoordinateTest.exe
 	@gcc -o $(TEST_BIN_DIR)/type.WindowCoordinateTest.exe\
 	    $(TEST_OBJ_DIR)/WindowCoordinateTest.o $(MAIN_OBJ_DIR)/UnitTest.o\
-		$(MAIN_OBJ_DIR)/WindowCoordinate.o
+	    $(MAIN_OBJ_DIR)/WindowCoordinate.o
 
 ui.CommandLineInterfaceTest: CommandLineInterface.o CommandLineInterfaceTest.o\
-                             String.o WindowCoordinate.o
+                             StringUtils.o WindowCoordinate.o
 	@echo building $(MAIN_BIN_DIR)/ui.CommandLineInterfaceTest.exe
 	@gcc -o $(MAIN_BIN_DIR)/ui.CommandLineInterfaceTest.exe\
 	    $(TEST_OBJ_DIR)/CommandLineInterfaceTest.o\
-		$(MAIN_OBJ_DIR)/CommandLineInterface.o $(MAIN_OBJ_DIR)/String.o\
-		$(MAIN_OBJ_DIR)/WindowCoordinate.o
+	    $(MAIN_OBJ_DIR)/CommandLineInterface.o $(MAIN_OBJ_DIR)/StringUtils.o\
+	    $(MAIN_OBJ_DIR)/WindowCoordinate.o
+
+util.StringUtilsTest: UnitTest.o StringUtils.o StringUtilsTest.o
+	@echo building $(TEST_BIN_DIR)/type.StringUtilsTest.exe
+	@gcc -o $(TEST_BIN_DIR)/type.StringUtilsTest.exe\
+	    $(TEST_OBJ_DIR)/StringUtilsTest.o\
+	    $(MAIN_OBJ_DIR)/UnitTest.o $(MAIN_OBJ_DIR)/StringUtils.o
+
 
 # =============================================================================
 #                                Source Files
 # =============================================================================
-type: String.o WindowCoordinate.o
+type: WindowCoordinate.o
 ui: CommandLineInterface.o
+util: StringUtils.o
 
-UnitTest.o:
-	@echo compiling $(SRC_DIR)/test/UnitTest.c
-	@gcc -o $(MAIN_OBJ_DIR)/UnitTest.o -c $(SRC_DIR)/test/UnitTest.c -Iinclude
-
-String.o:
-	@echo compiling $(SRC_DIR)/type/String.c
-	@gcc -o $(MAIN_OBJ_DIR)/String.o -c $(SRC_DIR)/type/String.c -Iinclude
-
+# ui
 WindowCoordinate.o:
 	@echo compiling $(SRC_DIR)/type/WindowCoordinate.c
 	@gcc -o $(MAIN_OBJ_DIR)/WindowCoordinate.o\
 	     -c $(SRC_DIR)/type/WindowCoordinate.c -Iinclude
 
+# type
 CommandLineInterface.o:
 	@echo compiling $(SRC_DIR)/ui/CommandLineInterface.c
 	@gcc -o $(MAIN_OBJ_DIR)/CommandLineInterface.o\
 	     -c $(SRC_DIR)/ui/CommandLineInterface.c -Iinclude
 
+# util
+StringUtils.o:
+	@echo compiling $(SRC_DIR)/util/StringUtils.c
+	@gcc -o $(MAIN_OBJ_DIR)/StringUtils.o\
+	    -c $(SRC_DIR)/util/StringUtils.c -Iinclude
+
+UnitTest.o:
+	@echo compiling $(SRC_DIR)/util/UnitTest.c
+	@gcc -o $(MAIN_OBJ_DIR)/UnitTest.o -c $(SRC_DIR)/util/UnitTest.c -Iinclude
+
+
 # =============================================================================
 #                                 Test Files
 # =============================================================================
 # type
-StringTest.o:
-	@echo compiling $(TEST_DIR)/type/StringTest.c
-	@gcc -o $(TEST_OBJ_DIR)/StringTest.o\
-	     -c $(TEST_DIR)/type/StringTest.c -Iinclude
-
 WindowCoordinateTest.o:
 	@echo compiling $(TEST_DIR)/type/WindowCoordinateTest.c
 	@gcc -o $(TEST_OBJ_DIR)/WindowCoordinateTest.o\
@@ -100,6 +107,13 @@ CommandLineInterfaceTest.o:
 	@echo compiling $(TEST_DIR)/ui/CommandLineInterfaceTest.c
 	@gcc -o $(TEST_OBJ_DIR)/CommandLineInterfaceTest.o\
 	     -c $(TEST_DIR)/ui/CommandLineInterfaceTest.c -Iinclude
+
+# util
+StringUtilsTest.o:
+	@echo compiling $(TEST_DIR)/util/StringUtilsTest.c
+	@gcc -o $(TEST_OBJ_DIR)/StringUtilsTest.o\
+	     -c $(TEST_DIR)/util/StringUtilsTest.c -Iinclude
+
 
 # =============================================================================
 #                              Build Directories
@@ -112,8 +126,7 @@ build-dir:
 # =============================================================================
 #                                 Unit Tests
 # =============================================================================
-check: clean-test build-dir type.StringTest type.WindowCoordinateTest\
-       ui.CommandLineInterfaceTest
+check: clean-test build-dir test-type test-ui test-util
 	@echo running unit tests
 	@pwsh $(SCRIPTS_DIR)/RunTests.ps1
 

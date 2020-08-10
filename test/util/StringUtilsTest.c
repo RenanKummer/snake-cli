@@ -1,5 +1,5 @@
-#include "test/UnitTest.h"
-#include "type/String.h"
+#include "util/StringUtils.h"
+#include "util/UnitTest.h"
 
 TestResult testEqualsString_Equal();
 TestResult testEqualsString_NotEqual();

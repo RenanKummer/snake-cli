@@ -1,5 +1,5 @@
-#ifndef INCLUDE_TYPE_STRING_H
-#define INCLUDE_TYPE_STRING_H
+#ifndef INCLUDE_UTIL_STRINGUTILS_H
+#define INCLUDE_UTIL_STRINGUTILS_H
 /**
  * Extends features from C Standard Library's string.h header file.
  * 
@@ -14,4 +14,4 @@ char* concatenateStrings(const char *const str1, const char *const str2);
 
 char* castIntToString(const int number);
 
-#endif // INCLUDE_TYPE_STRING_H
+#endif // INCLUDE_UTIL_STRINGUTILS_H

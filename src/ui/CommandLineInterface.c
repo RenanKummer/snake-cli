@@ -1,6 +1,6 @@
-#include "type/String.h"
 #include "type/WindowCoordinate.h"
 #include "ui/CommandLineInterface.h"
+#include "util/StringUtils.h"
 
 #include <windows.h>
 

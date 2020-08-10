@@ -1,5 +1,5 @@
-#include "test/UnitTest.h"
 #include "type/WindowCoordinate.h"
+#include "util/UnitTest.h"
 
 TestResult testEqualsWindowCoordinate_Equal();
 TestResult testEqualsWindowCoordinate_NotEqual();

@@ -1,4 +1,5 @@
-#include "type/String.h"
+#include "util/StringUtils.h"
+
 #include <stdlib.h>
 
 Boolean equalsString(const char *const str1, const char *const str2)
