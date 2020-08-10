@@ -38,22 +38,23 @@ snake-cli: type ui util
 # =============================================================================
 #                              Test Executables
 # =============================================================================
+test-manual: manual.CommandLineInterfaceTest
 test-type: type.WindowCoordinateTest
-test-ui: ui.CommandLineInterfaceTest
 test-util: util.StringUtilsTest
+
+manual.CommandLineInterfaceTest: CommandLineInterface.o\
+                                 CommandLineInterfaceTest.o\
+                                 StringUtils.o WindowCoordinate.o
+	@echo building $(TEST_BIN_DIR)/manual.CommandLineInterfaceTest.exe
+	@gcc -o $(TEST_BIN_DIR)/manual.CommandLineInterfaceTest.exe\
+	    $(TEST_OBJ_DIR)/CommandLineInterfaceTest.o\
+	    $(MAIN_OBJ_DIR)/CommandLineInterface.o $(MAIN_OBJ_DIR)/StringUtils.o\
+	    $(MAIN_OBJ_DIR)/WindowCoordinate.o
 
 type.WindowCoordinateTest: UnitTest.o WindowCoordinate.o WindowCoordinateTest.o
 	@echo building $(TEST_BIN_DIR)/type.WindowCoordinateTest.exe
 	@gcc -o $(TEST_BIN_DIR)/type.WindowCoordinateTest.exe\
 	    $(TEST_OBJ_DIR)/WindowCoordinateTest.o $(MAIN_OBJ_DIR)/UnitTest.o\
-	    $(MAIN_OBJ_DIR)/WindowCoordinate.o
-
-ui.CommandLineInterfaceTest: CommandLineInterface.o CommandLineInterfaceTest.o\
-                             StringUtils.o WindowCoordinate.o
-	@echo building $(MAIN_BIN_DIR)/ui.CommandLineInterfaceTest.exe
-	@gcc -o $(MAIN_BIN_DIR)/ui.CommandLineInterfaceTest.exe\
-	    $(TEST_OBJ_DIR)/CommandLineInterfaceTest.o\
-	    $(MAIN_OBJ_DIR)/CommandLineInterface.o $(MAIN_OBJ_DIR)/StringUtils.o\
 	    $(MAIN_OBJ_DIR)/WindowCoordinate.o
 
 util.StringUtilsTest: UnitTest.o StringUtils.o StringUtilsTest.o
@@ -126,10 +127,11 @@ build-dir:
 # =============================================================================
 #                                 Unit Tests
 # =============================================================================
-check: clean-test build-dir test-type test-ui test-util
+check: clean-test build-dir test-type test-util
 	@echo running unit tests
 	@pwsh $(SCRIPTS_DIR)/RunTests.ps1
 
+check-manual: clean-test build-dir test-manual
 
 # =============================================================================
 #                                   Cleanup
