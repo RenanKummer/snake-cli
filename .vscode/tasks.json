@@ -15,7 +15,10 @@
             "label": "rebuild",
             "detail": "Clean and rebuild application executable",
             "type": "shell",
-            "dependsOn": ["clean", "build"],
+            "dependsOn": [
+                "clean",
+                "build"
+            ],
             "dependsOrder": "sequence"
         },
         {
@@ -27,6 +30,13 @@
                 "kind": "test",
                 "isDefault": true
             }
+        },
+        {
+            "label": "test-manual",
+            "detail": "Build manual unit tests",
+            "type": "shell",
+            "command": "mingw32-make check-manual",
+            "group": "test"
         },
         {
             "label": "clean",

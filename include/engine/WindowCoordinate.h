@@ -1,17 +1,18 @@
-#ifndef INCLUDE_TYPE_WINDOWCOORDINATE_H
-#define INCLUDE_TYPE_WINDOWCOORDINATE_H
+#ifndef INCLUDE_ENGINE_WINDOWCOORDINATE_H
+#define INCLUDE_ENGINE_WINDOWCOORDINATE_H
 /**
  * Structure defining the coordinates of the Command Line Interface window.
  * 
  * @author Renan Kummer [ GitHub: @RenanKummer ]
  */
-#include "Boolean.h"
+#include "constant/Boolean.h"
+#include "engine/WindowSize.h"
 
 typedef struct WindowCoordinate
 {
-    const int height;
-    const int width;
-} WindowCoordinate, WindowSize;
+    int height;
+    int width;
+} WindowCoordinate;
 
 /**
  * Compare if two instances of WindowCoordinate are equal.
@@ -24,19 +25,6 @@ typedef struct WindowCoordinate
 Boolean equalsWindowCoordinate(
     const WindowCoordinate instance1,
     const WindowCoordinate instance2
-);
-
-/**
- * Compare if two instances of WindowSize are equal.
- * 
- * @param instance1 The WindowSize instance to compare.
- * @param instance2 The WindowSize instance to compare.
- * 
- * @return true if equal, false otherwise.
- */
-Boolean equalsWindowSize(
-    const WindowSize instance1, 
-    const WindowSize instance2
 );
 
 /**
@@ -53,18 +41,8 @@ Boolean equalsWindowSize(
  */
 Boolean isValidWindowCoordinate(
     const WindowCoordinate coordinate,
-    const WindowSize size 
+    const WindowSize size
 );
 
-/**
- * Validate WindowSize instance.
- * 
- * Both dimensions, height and width, must be positive.
- * 
- * @param windowSize The instance to validate.
- * 
- * @return true if valid, false otherwise.
- */
-Boolean isValidWindowSize(const WindowSize windowSize);
 
-#endif // INCLUDE_TYPE_WINDOWCOORDINATE_H
+#endif // INCLUDE_ENGINE_WINDOWCOORDINATE_H
