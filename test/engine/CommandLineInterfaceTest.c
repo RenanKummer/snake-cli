@@ -1,13 +1,6 @@
-#include "type/Boolean.h"
-#include "type/WindowCoordinate.h"
-#include "ui/CommandLineInterface.h"
+#include "engine/CommandLineInterface.h"
 #include <windows.h>
 #include <stdio.h>
-/**
- * This is a manual unit test application.
- * 
- * @author Renan Kummer [ GitHub: @RenanKummer ]
- */
 
 typedef enum Option
 {

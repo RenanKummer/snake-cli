@@ -5,7 +5,8 @@
  * 
  * @author Renan Kummer [ GitHub: @RenanKummer ]
  */
-#include "type/Boolean.h"
+#include "constant/Boolean.h"
+#include "util/StringUtils.h"
 
 #include <stdlib.h>
 #include <stdio.h>

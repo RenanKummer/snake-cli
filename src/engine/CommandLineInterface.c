@@ -1,5 +1,5 @@
-#include "type/WindowCoordinate.h"
-#include "ui/CommandLineInterface.h"
+#include "converter/StringConverter.h"
+#include "engine/CommandLineInterface.h"
 #include "util/StringUtils.h"
 
 #include <windows.h>
@@ -45,8 +45,8 @@ void wait(int miliseconds)
 Boolean resizeWindow(const WindowSize windowSize)
 {
     if (isValidWindowSize(windowSize)) {
-        const char *const heightString = castIntToString(windowSize.height);
-        const char *const widthString = castIntToString(windowSize.width);
+        const char *const heightString = convertIntToString(windowSize.height);
+        const char *const widthString = convertIntToString(windowSize.width);
 
         char *modeWithHeight = concatenateStrings("mode ", widthString);
         free((void*) widthString);

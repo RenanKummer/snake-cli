@@ -1,12 +1,12 @@
-#ifndef INCLUDE_UI_COMMANDLINEINTERFACE_H
-#define INCLUDE_UI_COMMANDLINEINTERFACE_H
+#ifndef INCLUDE_ENGINE_COMMANDLINEINTERFACE_H
+#define INCLUDE_ENGINE_COMMANDLINEINTERFACE_H
 /**
- * Manipulate Command Line Interface (CLI) on Windows. Functions from conio.h 
- * header file are also available.
+ * Manipulate Command Line Interface (CLI) on Windows.
  * 
  * @author Renan Kummer [ GitHub: @RenanKummer ]
  */
-#include "type/Boolean.h"
+#include "constant/Boolean.h"
+#include "engine/WindowCoordinate.h"
 
 /**
  * Move cursor in command line window.
@@ -62,4 +62,4 @@ Boolean hasKeyboardHit();
  */
 int readKeyboardHitNoEcho();
 
-#endif // INCLUDE_UI_COMMANDLINEINTERFACE_H
+#endif // INCLUDE_ENGINE_COMMANDLINEINTERFACE_H

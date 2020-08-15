@@ -10,15 +10,10 @@ TestResult testConcatenateStrings_NullAndValid();
 TestResult testConcatenateStrings_ValidAndNull();
 TestResult testConcatenateStrings_BothNull();
 TestResult testConcatenateStrings_Modifiable();
-TestResult testCastIntToString_PositiveRightZeros();
-TestResult testCastIntToString_PositiveMiddleZeros();
-TestResult testCastIntToString_PositiveNoZeros();
-TestResult testCastIntToString_Zero();
-TestResult testCastIntToString_Negative();
 
 int main()
 {
-    enum Constant { NUM_TESTS = 14 };
+    enum Constant { NUM_TESTS = 9 };
 
     TestResult results[NUM_TESTS] = {
         testEqualsString_Equal(),
@@ -29,15 +24,10 @@ int main()
         testConcatenateStrings_NullAndValid(),
         testConcatenateStrings_ValidAndNull(),
         testConcatenateStrings_BothNull(),
-        testConcatenateStrings_Modifiable(),
-        testCastIntToString_PositiveRightZeros(),
-        testCastIntToString_PositiveMiddleZeros(),
-        testCastIntToString_PositiveNoZeros(),
-        testCastIntToString_Zero(),
-        testCastIntToString_Negative()
+        testConcatenateStrings_Modifiable()
     };
 
-    const char *const identifier = "type.StringTest";
+    const char *const identifier = "type.StringUtilsTest";
     return printTestResults(identifier, results, NUM_TESTS);
 }
 
@@ -76,7 +66,7 @@ TestResult testEqualsString_NullAndValid()
 
 TestResult testEqualsString_BothNull()
 {
-    TestResult testResult = {"testEqualsString_NullAndValid", false};
+    TestResult testResult = {"testEqualsString_BothNull", false};
 
     if (equalsString(NULL, NULL)) {
         testResult.hasPassed = true;
@@ -163,79 +153,6 @@ TestResult testConcatenateStrings_Modifiable()
     const char *const expectedString = "Str1-str2";
 
     if (equalsString(string, expectedString)) {
-        testResult.hasPassed = true;
-    }
-
-    return testResult;
-}
-
-TestResult testCastIntToString_PositiveRightZeros()
-{
-    TestResult testResult = 
-        {"testCastIntToString_PositiveRightZeros", false};
-
-    char *expectedString = "32100";
-    char *actualString = castIntToString(32100);
-
-    if (equalsString(actualString, expectedString)) {
-        testResult.hasPassed = true;
-    }
-
-    return testResult;
-}
-
-TestResult testCastIntToString_PositiveMiddleZeros()
-{
-    TestResult testResult = 
-        {"testCastIntToString_PositiveMiddleZeros", false};
-
-    char *expectedString = "32001";
-    char *actualString = castIntToString(32001);
-
-    if (equalsString(actualString, expectedString)) {
-        testResult.hasPassed = true;
-    }
-
-    return testResult;
-}
-
-TestResult testCastIntToString_PositiveNoZeros()
-{
-    TestResult testResult = 
-        {"testCastIntToString_PositiveNoZeros", false};
-
-    char *expectedString = "54321";
-    char *actualString = castIntToString(54321);
-
-    if (equalsString(actualString, expectedString)) {
-        testResult.hasPassed = true;
-    }
-
-    return testResult;
-}
-
-TestResult testCastIntToString_Zero()
-{
-    TestResult testResult = {"testCastIntToString_Zero", false};
-
-    char *expectedString = "0";
-    char *actualString = castIntToString(0);
-
-    if (equalsString(actualString, expectedString)) {
-        testResult.hasPassed = true;
-    }
-
-    return testResult;
-}
-
-TestResult testCastIntToString_Negative()
-{
-    TestResult testResult = {"testCastIntToString_Negative", false};
-
-    char *expectedString = "-54321";
-    char *actualString = castIntToString(-54321);
-
-    if (equalsString(actualString, expectedString)) {
         testResult.hasPassed = true;
     }
 
