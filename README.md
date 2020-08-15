@@ -18,12 +18,13 @@ This project has custom-built tasks for Visual Studio Code. To run tasks either
 
 <br>
 
-| Task      | Description                              |
-|----------:|------------------------------------------|
-| _build_   | Build application executable             |
-| _rebuild_ | Clean and rebuild application executable |
-| _test_    | Run unit tests                           |
-| _clean_   | Clean build directories                  |
+| Task          | Description                              |
+|--------------:|------------------------------------------|
+| _build_       | Build application executable             |
+| _rebuild_     | Clean and rebuild application executable |
+| _test_        | Run unit tests                           |
+| _test-manual_ | Build manual unit tests                  |
+| _clean_       | Clean build directories                  |
 
 ### **On other editors:**
 
@@ -35,6 +36,11 @@ mingw32-make
 To unit test the application, run
 ```powershell
 mingw32-make check
+```
+
+To build manual unit tests, run
+```powershell
+mingw32-make check-manual
 ```
 
 # Continuous Integration
