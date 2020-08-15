@@ -39,11 +39,17 @@ int main()
         getDefaultWindowCoordinate().width
     );
 
-    printf("Waiting 5 seconds before clearing all output...");
+    printf("Hiding cursor and waiting 5 seconds before clearing all output...");
+    hideCursor();
     wait(5000);
     clearWindow();
 
     printf("Waiting for any key to be entered...\n");
     while (!hasKeyboardHit()) {}
     printf("You entered key %d\n", readKeyboardHitNoEcho());
+    
+    showCursor();
+    printf("\nAnd here is the cursor now:");
+
+    wait(5000);
 }

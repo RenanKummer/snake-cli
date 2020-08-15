@@ -44,6 +44,16 @@ Boolean resizeWindow(const WindowSize windowSize);
 void clearWindow();
 
 /**
+ * Hide cursor in command line.
+ */
+void hideCursor();
+
+/**
+ * Show cursor in command line.
+ */
+void showCursor();
+
+/**
  * Temporarily pause the application execution.
  * 
  * @param miliseconds The time to wait in miliseconds.
