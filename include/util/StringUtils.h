@@ -20,6 +20,15 @@
 Boolean equalsString(const char *const str1, const char *const str2);
 
 /**
+ * Check if string is empty or null.
+ * 
+ * @param str The string to check if empty.
+ * 
+ * @return true if empty or null, false otherwise.
+ */
+Boolean isEmptyString(const char *const str);
+
+/**
  * Concatenate two strings as a new string instance.
  * 
  * @param startString The string that comes first.

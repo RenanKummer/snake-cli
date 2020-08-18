@@ -3,10 +3,16 @@
  * 
  * @author Renan Kummer [ GitHub: @RenanKummer ]
  */
+#include "config/CliWindowConfig.h"
+#include "gameplay/LevelMap.h"
+
 #include <stdlib.h>
 #include <stdio.h>
 
 int main(int argc, char **argv)
 {
-    printf("Not yet implemented\n");
+    CliWindowConfig cliWindowConfig = initializeCliWindow();
+    
+    LevelMap levelMap = getLevelMap();
+    printLevelMap(levelMap);
 }

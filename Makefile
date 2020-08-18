@@ -29,7 +29,7 @@ SCRIPTS_DIR   = $(RESOURCES_DIR)/scripts
 # =============================================================================
 #                              Main Executables
 # =============================================================================
-snake-cli: converter engine util
+snake-cli: config converter engine gameplay util
 	@echo building $(MAIN_BIN_DIR)/snake-cli.exe
 	@gcc -o $(MAIN_BIN_DIR)/snake-cli.exe $(SRC_DIR)/Main.c\
 	    $(MAIN_OBJ_DIR)/*.o -Iinclude
@@ -40,7 +40,8 @@ snake-cli: converter engine util
 # =============================================================================
 test-manual: engine.CommandLineInterfaceTest
 test-auto: converter.StringConverterTest\
-           engine.WindowCoordinateTest engine.WindowSizeTest\
+		   engine.WindowCoordinateTest engine.WindowSizeTest\
+		   gameplay.LevelMapTest\
 		   util.StringUtilsTest
 
 # converter
@@ -77,7 +78,13 @@ engine.WindowSizeTest: UnitTest.o WindowSizeTest.o WindowSizeTest.o
 	    $(MAIN_OBJ_DIR)/WindowSize.o
 
 # gameplay
-
+gameplay.LevelMapTest: UnitTest.o LevelMapTest.o WindowSize.o\
+                       StringUtils.o LevelMap.o
+	@echo building $(TEST_BIN_DIR)/gameplay.LevelMapTest.exe
+	@gcc -o $(TEST_BIN_DIR)/gameplay.LevelMapTest.exe\
+	    $(TEST_OBJ_DIR)/LevelMapTest.o $(MAIN_OBJ_DIR)/UnitTest.o\
+		$(MAIN_OBJ_DIR)/WindowSize.o $(MAIN_OBJ_DIR)/StringUtils.o\
+		$(MAIN_OBJ_DIR)/LevelMap.o
 
 # util
 util.StringUtilsTest: UnitTest.o StringUtils.o StringUtilsTest.o
@@ -90,11 +97,19 @@ util.StringUtilsTest: UnitTest.o StringUtils.o StringUtilsTest.o
 # =============================================================================
 #                                Source Files
 # =============================================================================
+config:    CliWindowConfig.o
 converter: StringConverter.o
-engine: CommandLineInterface.o WindowCoordinate.o WindowSize.o
-util: StringUtils.o
+engine:    CommandLineInterface.o WindowCoordinate.o WindowSize.o
+gameplay:  LevelMap.o
+util:      StringUtils.o
 
-#converter
+# config
+CliWindowConfig.o:
+	@echo compiling $(SRC_DIR)/config/CliWindowConfig.c
+	@gcc -o $(MAIN_OBJ_DIR)/CliWindowConfig.o\
+	     -c $(SRC_DIR)/config/CliWindowConfig.c -Iinclude	
+
+# converter
 StringConverter.o:
 	@echo compiling $(SRC_DIR)/converter/StringConverter.c
 	@gcc -o $(MAIN_OBJ_DIR)/StringConverter.o\
@@ -117,13 +132,16 @@ WindowSize.o:
 	     -c $(SRC_DIR)/engine/WindowSize.c -Iinclude
 
 # gameplay
-
+LevelMap.o:
+	@echo compiling $(SRC_DIR)/gameplay/LevelMap.c
+	@gcc -o $(MAIN_OBJ_DIR)/LevelMap.o\
+	     -c $(SRC_DIR)/gameplay/LevelMap.c -Iinclude
 
 # util
 StringUtils.o:
 	@echo compiling $(SRC_DIR)/util/StringUtils.c
 	@gcc -o $(MAIN_OBJ_DIR)/StringUtils.o\
-	    -c $(SRC_DIR)/util/StringUtils.c -Iinclude
+	     -c $(SRC_DIR)/util/StringUtils.c -Iinclude
 
 UnitTest.o:
 	@echo compiling $(SRC_DIR)/util/UnitTest.c
@@ -156,7 +174,10 @@ WindowSizeTest.o:
 	     -c $(TEST_DIR)/engine/WindowSizeTest.c -Iinclude
 
 # gameplay
-
+LevelMapTest.o:
+	@echo compiling $(TEST_DIR)/gameplay/LevelMapTest.c
+	@gcc -o $(TEST_OBJ_DIR)/LevelMapTest.o\
+	     -c $(TEST_DIR)/gameplay/LevelMapTest.c -Iinclude
 
 # util
 StringUtilsTest.o:
