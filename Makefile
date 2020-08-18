@@ -78,13 +78,13 @@ engine.WindowSizeTest: UnitTest.o WindowSizeTest.o WindowSizeTest.o
 	    $(MAIN_OBJ_DIR)/WindowSize.o
 
 # gameplay
-gameplay.LevelMapTest: UnitTest.o LevelMapTest.o WindowSize.o\
-                       StringUtils.o LevelMap.o
+gameplay.LevelMapTest: UnitTest.o LevelMapTest.o StringUtils.o\
+                       WindowSize.o WindowCoordinate.o LevelMap.o
 	@echo building $(TEST_BIN_DIR)/gameplay.LevelMapTest.exe
 	@gcc -o $(TEST_BIN_DIR)/gameplay.LevelMapTest.exe\
 	    $(TEST_OBJ_DIR)/LevelMapTest.o $(MAIN_OBJ_DIR)/UnitTest.o\
-		$(MAIN_OBJ_DIR)/WindowSize.o $(MAIN_OBJ_DIR)/StringUtils.o\
-		$(MAIN_OBJ_DIR)/LevelMap.o
+		$(MAIN_OBJ_DIR)/WindowSize.o $(MAIN_OBJ_DIR)/WindowCoordinate.o\
+		$(MAIN_OBJ_DIR)/StringUtils.o $(MAIN_OBJ_DIR)/LevelMap.o
 
 # util
 util.StringUtilsTest: UnitTest.o StringUtils.o StringUtilsTest.o

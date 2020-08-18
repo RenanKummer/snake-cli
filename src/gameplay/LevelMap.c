@@ -11,6 +11,8 @@ LevelMap getLevelMap()
     const int numColumns = 120;
 
     LevelMap levelMap = {"hardcoded-level", numRows, numColumns};
+    levelMap.startCoordinate.height = numRows - 1;
+    levelMap.startCoordinate.width = numColumns - 1;
     levelMap.map = (char**) malloc(sizeof(char*) * numRows);
 
     for (int i = 0; i < numRows; i++) {

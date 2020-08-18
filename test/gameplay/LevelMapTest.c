@@ -6,15 +6,17 @@
 TestResult testGetLevelMap_ValidDimensions();
 TestResult testGetLevelMap_ValidIdentifier();
 TestResult testGetLevelMap_ValidMap();
+TestResult testGetLevelMap_ValidStartCoordinate();
 
 int main()
 {
-    enum Constant { NUM_TESTS = 3 };
+    enum Constant { NUM_TESTS = 4 };
 
     TestResult results[NUM_TESTS] = {
         testGetLevelMap_ValidDimensions(),
         testGetLevelMap_ValidIdentifier(),
-        testGetLevelMap_ValidMap()
+        testGetLevelMap_ValidMap(),
+        testGetLevelMap_ValidStartCoordinate()
     };
 
     const char identifier[] = "gameplay.LevelMapTest";
@@ -63,6 +65,20 @@ TestResult testGetLevelMap_ValidMap()
                 testResult.hasPassed = false;
             }
         }
+    }
+
+    return testResult;
+}
+
+TestResult testGetLevelMap_ValidStartCoordinate()
+{
+    TestResult testResult = {"testGetLevelMap_ValidStartCoordinate", false};
+
+    LevelMap levelMap = getLevelMap();
+    WindowSize levelMapSize = {levelMap.height, levelMap.width};
+    
+    if (isValidWindowCoordinate(levelMap.startCoordinate, levelMapSize)) {
+        testResult.hasPassed = true;
     }
 
     return testResult;

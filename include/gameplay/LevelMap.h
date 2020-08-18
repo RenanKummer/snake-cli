@@ -5,7 +5,9 @@
  * 
  * @author Renan Kummer [ GitHub: @RenanKummer ]
  */
+#include "engine/WindowCoordinate.h"
 
+typedef WindowCoordinate LevelMapCoordinate;
 typedef struct LevelMap
 {
     const char *const identifier;
@@ -13,6 +15,8 @@ typedef struct LevelMap
     const int width;
 
     char **map;
+    
+    LevelMapCoordinate startCoordinate;
 } LevelMap;
 
 /**
