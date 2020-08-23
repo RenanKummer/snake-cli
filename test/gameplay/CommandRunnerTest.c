@@ -9,10 +9,14 @@ TestResult testMoveSnakeDown_Move();
 TestResult testMoveSnakeDown_NullMap();
 TestResult testMoveSnakeRight_Move();
 TestResult testMoveSnakeRight_NullMap();
+TestResult testHitsWall_Hit();
+TestResult testHitsWall_DoesNotHit();
+TestResult testHitsWall_InvalidLevelMap();
+TestResult testHitsWall_InvalidCoordinate();
 
 int main()
 {
-    enum Constant {NUM_TESTS = 8};
+    enum Constant {NUM_TESTS = 12};
 
     TestResult results[NUM_TESTS] = {
         testMoveSnakeUp_Move(),
@@ -22,7 +26,11 @@ int main()
         testMoveSnakeDown_Move(),
         testMoveSnakeDown_NullMap(),
         testMoveSnakeRight_Move(),
-        testMoveSnakeRight_NullMap()
+        testMoveSnakeRight_NullMap(),
+        testHitsWall_Hit(),
+        testHitsWall_DoesNotHit(),
+        testHitsWall_InvalidLevelMap(),
+        testHitsWall_InvalidCoordinate()
     };
 
     const char identifier[] = "gameplay.CommandRunnerTest";
@@ -133,6 +141,63 @@ TestResult testMoveSnakeRight_NullMap()
 
     moveSnakeRight(NULL);
     testResult.hasPassed = true;
+
+    return testResult;
+}
+
+TestResult testHitsWall_Hit()
+{
+    TestResult testResult = {"testHitsWall_Hit", false};
+
+    LevelMap levelMap = getLevelMap();
+    LevelMapCoordinate newCoordinate = {0, 0};
+
+    if (hitsWall(levelMap, newCoordinate)) {
+        testResult.hasPassed = true;
+    }
+
+    return testResult;
+}
+
+TestResult testHitsWall_DoesNotHit()
+{
+    TestResult testResult = {"testHitsWall_DoesNotHit", false};
+
+    LevelMap levelMap = getLevelMap();
+    LevelMapCoordinate newCoordinate = {1, 1};
+
+    if (!hitsWall(levelMap, newCoordinate)) {
+        testResult.hasPassed = true;
+    }
+
+    return testResult;
+}
+
+TestResult testHitsWall_InvalidLevelMap()
+{
+    TestResult testResult = {"testHitsWall_InvalidLevelMap", false};
+
+    LevelMap levelMap = getLevelMap();
+    levelMap.map[0][0] = 'z';
+    LevelMapCoordinate newCoordinate = {0, 0};
+
+    if (!hitsWall(levelMap, newCoordinate)) {
+        testResult.hasPassed = true;
+    }
+
+    return testResult;
+}
+
+TestResult testHitsWall_InvalidCoordinate()
+{
+    TestResult testResult = {"testHitsWall_InvalidCoordinate", false};
+
+    LevelMap levelMap = getLevelMap();
+    LevelMapCoordinate newCoordinate = {levelMap.height, levelMap.width};
+
+    if (!hitsWall(levelMap, newCoordinate)) {
+        testResult.hasPassed = true;
+    }
 
     return testResult;
 }

@@ -71,6 +71,19 @@ void moveSnakeRight(LevelMap *const levelMap)
     }
 }
 
+Boolean hitsWall(
+    const LevelMap levelMap, 
+    const LevelMapCoordinate newCoordinate
+)
+{
+    WindowSize mapSize = {levelMap.height, levelMap.width};
+    if (isValidLevelMap(levelMap) && isValidWindowCoordinate(newCoordinate, mapSize)) {
+        return (levelMap.map[newCoordinate.height][newCoordinate.width] == WALL);
+    }
+
+    return false;
+}
+
 void refreshSnakeLevelMap(const LevelMap oldMap, const LevelMap newMap)
 {
     if (isValidLevelMap(oldMap) && isValidLevelMap(newMap) &&

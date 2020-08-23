@@ -46,6 +46,19 @@ void moveSnakeDown(LevelMap *const levelMap);
 void moveSnakeRight(LevelMap *const levelMap);
 
 /**
+ * Check if moving to new coordinate hits a wall.
+ * 
+ * @param levelMap      The level map.
+ * @param newCoordinate The new coordinate to check.
+ * 
+ * @return true if hits, false otherwise.
+ */
+Boolean hitsWall(
+    const LevelMap levelMap, 
+    const LevelMapCoordinate newCoordinate
+);
+
+/**
  * Refresh the level map on the screen. Only refreshes modified characters.
  * 
  * @param oldMap The old LevelMap instance.
