@@ -16,13 +16,32 @@ typedef struct LevelMap
 
     char **map;
     
-    LevelMapCoordinate startCoordinate;
+    LevelMapCoordinate snakeCoordinate;
 } LevelMap;
 
 /**
  * @return The level map.
  */
 LevelMap getLevelMap();
+
+/**
+ * Validate fields of a LevelMap instance.
+ * 
+ * @param levelMap The level map to validate.
+ * 
+ * @return true if valid, false otherwise.
+ */
+Boolean isValidLevelMap(const LevelMap levelMap);
+
+/**
+ * Copy LevelMap instance. This functions uses dynamic memory allocation 
+ * for pointer fields.
+ * 
+ * @param levelMap The instance to copy.
+ * 
+ * @return Copied instance.
+ */
+LevelMap copyLevelMap(const LevelMap levelMap);
 
 /**
  * Print the level map into the Command Line Interface.

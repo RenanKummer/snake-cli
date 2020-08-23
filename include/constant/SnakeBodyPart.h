@@ -15,6 +15,6 @@ typedef enum SnakeBodyPart
 
     BODY_VERTICAL   = '|',
     BODY_HORIZONTAL = '-'
-}
+} SnakeBodyPart;
 
 #endif // INCLUDE_CONSTANT_SNAKEBODYPART_H

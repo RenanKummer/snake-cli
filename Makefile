@@ -38,9 +38,10 @@ snake-cli: config converter engine gameplay util
 # =============================================================================
 #                              Test Executables
 # =============================================================================
-test-manual: engine.CommandLineInterfaceTest
+test-manual: engine.CommandLineInterfaceManualTest
 test-auto: converter.StringConverterTest\
 		   engine.WindowCoordinateTest engine.WindowSizeTest\
+		   gameplay.CommandReaderTest gameplay.CommandRunnerTest\
 		   gameplay.LevelMapTest\
 		   util.StringUtilsTest
 
@@ -53,13 +54,13 @@ converter.StringConverterTest: UnitTest.o StringConverterTest.o\
 		$(MAIN_OBJ_DIR)/StringConverter.o $(MAIN_OBJ_DIR)/StringUtils.o
 
 # engine
-engine.CommandLineInterfaceTest: CommandLineInterface.o\
-                                 CommandLineInterfaceTest.o\
-                                 StringUtils.o StringConverter.o\
-								 WindowCoordinate.o WindowSize.o
-	@echo building $(TEST_BIN_DIR)/engine.CommandLineInterfaceTest.exe
-	@gcc -o $(TEST_BIN_DIR)/engine.CommandLineInterfaceTest.exe\
-	    $(TEST_OBJ_DIR)/CommandLineInterfaceTest.o\
+engine.CommandLineInterfaceManualTest: CommandLineInterface.o\
+                                       CommandLineInterfaceManualTest.o\
+                                       StringUtils.o StringConverter.o\
+								       WindowCoordinate.o WindowSize.o
+	@echo building $(TEST_BIN_DIR)/engine.CommandLineInterfaceManualTest.exe
+	@gcc -o $(TEST_BIN_DIR)/engine.CommandLineInterfaceManualTest.exe\
+	    $(TEST_OBJ_DIR)/CommandLineInterfaceManualTest.o\
 	    $(MAIN_OBJ_DIR)/CommandLineInterface.o $(MAIN_OBJ_DIR)/StringUtils.o\
 	    $(MAIN_OBJ_DIR)/WindowCoordinate.o $(MAIN_OBJ_DIR)/WindowSize.o\
 		$(MAIN_OBJ_DIR)/StringConverter.o
@@ -78,6 +79,28 @@ engine.WindowSizeTest: UnitTest.o WindowSizeTest.o WindowSizeTest.o
 	    $(MAIN_OBJ_DIR)/WindowSize.o
 
 # gameplay
+gameplay.CommandReaderTest: UnitTest.o CommandReaderTest.o CommandReader.o\
+                            CommandLineInterface.o WindowCoordinate.o\
+							WindowSize.o StringUtils.o StringConverter.o
+	@echo building $(TEST_BIN_DIR)/gameplay.CommandReaderTest.exe
+	@gcc -o $(TEST_BIN_DIR)/gameplay.CommandReaderTest.exe\
+	    $(TEST_OBJ_DIR)/CommandReaderTest.o $(MAIN_OBJ_DIR)/UnitTest.o\
+		$(MAIN_OBJ_DIR)/CommandReader.o $(MAIN_OBJ_DIR)/CommandLineInterface.o\
+		$(MAIN_OBJ_DIR)/WindowCoordinate.o $(MAIN_OBJ_DIR)/WindowSize.o\
+		$(MAIN_OBJ_DIR)/StringUtils.o $(MAIN_OBJ_DIR)/StringConverter.o
+
+gameplay.CommandRunnerTest: UnitTest.o CommandRunnerTest.o CommandRunner.o\
+                            LevelMap.o WindowCoordinate.o WindowSize.o\
+							CommandLineInterface.o StringUtils.o\
+							StringConverter.o
+	@echo building $(TEST_BIN_DIR)/gameplay.CommandRunnerTest.exe
+	@gcc -o $(TEST_BIN_DIR)/gameplay.CommandReaderTest.exe\
+	    $(TEST_OBJ_DIR)/CommandRunnerTest.o $(MAIN_OBJ_DIR)/UnitTest.o\
+		$(MAIN_OBJ_DIR)/CommandRunner.o $(MAIN_OBJ_DIR)/LevelMap.o\
+		$(MAIN_OBJ_DIR)/WindowCoordinate.o $(MAIN_OBJ_DIR)/WindowSize.o\
+		$(MAIN_OBJ_DIR)/CommandLineInterface.o $(MAIN_OBJ_DIR)/StringUtils.o\
+		$(MAIN_OBJ_DIR)/StringConverter.o
+
 gameplay.LevelMapTest: UnitTest.o LevelMapTest.o StringUtils.o\
                        WindowSize.o WindowCoordinate.o LevelMap.o
 	@echo building $(TEST_BIN_DIR)/gameplay.LevelMapTest.exe
@@ -100,7 +123,7 @@ util.StringUtilsTest: UnitTest.o StringUtils.o StringUtilsTest.o
 config:    CliWindowConfig.o
 converter: StringConverter.o
 engine:    CommandLineInterface.o WindowCoordinate.o WindowSize.o
-gameplay:  LevelMap.o
+gameplay:  CommandReader.o CommandRunner.o LevelMap.o
 util:      StringUtils.o
 
 # config
@@ -132,6 +155,16 @@ WindowSize.o:
 	     -c $(SRC_DIR)/engine/WindowSize.c -Iinclude
 
 # gameplay
+CommandReader.o:
+	@echo compiling $(SRC_DIR)/gameplay/CommandReader.c
+	@gcc -o $(MAIN_OBJ_DIR)/CommandReader.o\
+	     -c $(SRC_DIR)/gameplay/CommandReader.c -Iinclude
+
+CommandRunner.o:
+	@echo compiling $(SRC_DIR)/gameplay/CommandRunner.c
+	@gcc -o $(MAIN_OBJ_DIR)/CommandRunner.o\
+	     -c $(SRC_DIR)/gameplay/CommandRunner.c -Iinclude
+
 LevelMap.o:
 	@echo compiling $(SRC_DIR)/gameplay/LevelMap.c
 	@gcc -o $(MAIN_OBJ_DIR)/LevelMap.o\
@@ -158,10 +191,10 @@ StringConverterTest.o:
 	     -c $(TEST_DIR)/converter/StringConverterTest.c -Iinclude
 
 # engine
-CommandLineInterfaceTest.o:
-	@echo compiling $(TEST_DIR)/engine/CommandLineInterfaceTest.c
-	@gcc -o $(TEST_OBJ_DIR)/CommandLineInterfaceTest.o\
-	     -c $(TEST_DIR)/engine/CommandLineInterfaceTest.c -Iinclude
+CommandLineInterfaceManualTest.o:
+	@echo compiling $(TEST_DIR)/engine/CommandLineInterfaceManualTest.c
+	@gcc -o $(TEST_OBJ_DIR)/CommandLineInterfaceManualTest.o\
+	     -c $(TEST_DIR)/engine/CommandLineInterfaceManualTest.c -Iinclude
 
 WindowCoordinateTest.o:
 	@echo compiling $(TEST_DIR)/engine/WindowCoordinateTest.c
@@ -174,6 +207,16 @@ WindowSizeTest.o:
 	     -c $(TEST_DIR)/engine/WindowSizeTest.c -Iinclude
 
 # gameplay
+CommandReaderTest.o:
+	@echo compiling $(TEST_DIR)/gameplay/CommandReaderTest.c
+	@gcc -o $(TEST_OBJ_DIR)/CommandReaderTest.o\
+	     -c $(TEST_DIR)/gameplay/CommandReaderTest.c -Iinclude
+
+CommandRunnerTest.o:
+	@echo compiling $(TEST_DIR)/gameplay/CommandRunnerTest.c
+	@gcc -o $(TEST_OBJ_DIR)/CommandRunnerTest.o\
+	     -c $(TEST_DIR)/gameplay/CommandRunnerTest.c -Iinclude
+
 LevelMapTest.o:
 	@echo compiling $(TEST_DIR)/gameplay/LevelMapTest.c
 	@gcc -o $(TEST_OBJ_DIR)/LevelMapTest.o\
