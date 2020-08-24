@@ -59,6 +59,13 @@ Boolean hitsWall(
 );
 
 /**
+ * Move Snake character back to start coordinate.
+ * 
+ * @param levelMap The level map.
+ */
+void moveSnakeBackToStartCoordinate(LevelMap *const levelMap);
+
+/**
  * Refresh the level map on the screen. Only refreshes modified characters.
  * 
  * @param oldMap The old LevelMap instance.

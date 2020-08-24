@@ -16,6 +16,7 @@ typedef struct LevelMap
 
     char **map;
     
+    LevelMapCoordinate startCoordinate;
     LevelMapCoordinate snakeCoordinate;
 } LevelMap;
 

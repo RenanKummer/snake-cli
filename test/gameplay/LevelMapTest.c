@@ -112,7 +112,8 @@ TestResult testIsValidLevelMap_Valid()
         }
     }
 
-    LevelMap levelMap = {"unit-test", NUM_ROWS, NUM_COLUMNS, map, {1, 1}};
+    LevelMap levelMap = 
+        {"unit-test", NUM_ROWS, NUM_COLUMNS, map, {1, 1}, {1, 1}};
     if (isValidLevelMap(levelMap)) {
         testResult.hasPassed = true;
     }
@@ -139,8 +140,8 @@ TestResult testIsValidLevelMap_InvalidIdentifier()
         }
     }
 
-    LevelMap levelMap = {NULL, NUM_ROWS, NUM_COLUMNS, map, {1, 1}};
-    if (isValidLevelMap(levelMap)) {
+    LevelMap levelMap = {NULL, NUM_ROWS, NUM_COLUMNS, map, {1, 1}, {1, 1}};
+    if (!isValidLevelMap(levelMap)) {
         testResult.hasPassed = true;
     }
 
@@ -158,7 +159,7 @@ TestResult testIsValidLevelMap_InvalidDimensions()
 
     enum Constant {NUM_ROWS = -1, NUM_COLUMNS = 10};
 
-    LevelMap levelMap = {NULL, NUM_ROWS, NUM_COLUMNS, NULL, {1, 1}};
+    LevelMap levelMap = {NULL, NUM_ROWS, NUM_COLUMNS, NULL, {1, 1}, {1, 1}};
     if (!isValidLevelMap(levelMap)) {
         testResult.hasPassed = true;
     }
@@ -181,7 +182,8 @@ TestResult testIsValidLevelMap_InvalidSnakeCoordinate()
         }
     }
 
-    LevelMap levelMap = {"unit-test", NUM_ROWS, NUM_COLUMNS, map, {-1, 1}};
+    LevelMap levelMap = 
+        {"unit-test", NUM_ROWS, NUM_COLUMNS, map, {-1, 1}, {-1, 1}};
     if (!isValidLevelMap(levelMap)) {
         testResult.hasPassed = true;
     }
@@ -200,7 +202,8 @@ TestResult testIsValidLevelMap_NullLevelMap()
 
     enum Constant {NUM_ROWS = 10, NUM_COLUMNS = 10};
 
-    LevelMap levelMap = {"unit-test", NUM_ROWS, NUM_COLUMNS, NULL, {1, 1}};
+    LevelMap levelMap = 
+        {"unit-test", NUM_ROWS, NUM_COLUMNS, NULL, {1, 1}, {1, 1}};
     if (!isValidLevelMap(levelMap)) {
         testResult.hasPassed = true;
     }
@@ -224,7 +227,8 @@ TestResult testIsValidLevelMap_InvalidLevelMapElement()
     }
     map[NUM_ROWS - 1][NUM_COLUMNS - 1] = 'z';
 
-    LevelMap levelMap = {"unit-test", NUM_ROWS, NUM_COLUMNS, map, {1, 1}};
+    LevelMap levelMap = 
+        {"unit-test", NUM_ROWS, NUM_COLUMNS, map, {1, 1}, {1, 1}};
     if (!isValidLevelMap(levelMap)) {
         testResult.hasPassed = true;
     }
@@ -251,7 +255,8 @@ TestResult testCopyLevelMap()
         }
     }
     
-    LevelMap levelMap = {"unit-test", NUM_ROWS, NUM_COLUMNS, map, {1, 1}};
+    LevelMap levelMap = 
+        {"unit-test", NUM_ROWS, NUM_COLUMNS, map, {1, 1}, {1, 1}};
     LevelMap levelMapCopy = copyLevelMap(levelMap);
 
     if (!equalsString(levelMap.identifier, levelMapCopy.identifier)) {

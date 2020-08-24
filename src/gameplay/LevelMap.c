@@ -13,7 +13,9 @@ LevelMap getLevelMap()
     const int numColumns = 120;
 
     LevelMap levelMap = {"hardcoded-level", numRows, numColumns};
+    levelMap.startCoordinate.height = numRows / 2;
     levelMap.snakeCoordinate.height = numRows / 2;
+    levelMap.startCoordinate.width = numColumns / 2;
     levelMap.snakeCoordinate.width = numColumns / 2;
     levelMap.map = (char**) malloc(sizeof(char*) * numRows);
 
@@ -48,9 +50,12 @@ Boolean isValidLevelMap(const LevelMap levelMap)
     WindowSize levelMapSize = {levelMap.height, levelMap.width};
     Boolean hasValidSnakeCoordinate = 
         isValidWindowCoordinate(levelMap.snakeCoordinate, levelMapSize);
+    Boolean hasValidStartCoordinate =
+        isValidWindowCoordinate(levelMap.startCoordinate, levelMapSize);
 
-    if (!hasValidDimensions || !hasValidDimensions || 
-        !hasValidSnakeCoordinate || (levelMap.map == NULL)) {
+    if (!hasValidIdentifier || !hasValidDimensions ||
+        !hasValidSnakeCoordinate || !hasValidStartCoordinate ||
+        (levelMap.map == NULL)) {
         return false;
     } else {
         for (int i = 0; i < levelMap.height; i++) {
@@ -86,6 +91,7 @@ LevelMap copyLevelMap(const LevelMap levelMap)
         levelMap.height,
         levelMap.width,
         NULL,
+        levelMap.startCoordinate,
         levelMap.snakeCoordinate
     };
 

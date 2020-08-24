@@ -27,11 +27,14 @@ void moveSnakeUp(LevelMap *const levelMap)
 {
     if ((levelMap != NULL) && isValidLevelMap(*levelMap)) {
         LevelMapCoordinate *coordinate = &(levelMap->snakeCoordinate);
+        
+        levelMap->map[coordinate->height][coordinate->width] = AVAILABLE_SPACE;
+        coordinate->height--;
 
-        if (coordinate->height > 0) {
-            levelMap->map[coordinate->height][coordinate->width] = AVAILABLE_SPACE;
-            coordinate->height--;
+        if (!hitsWall(*levelMap, *coordinate)) {
             levelMap->map[coordinate->height][coordinate->width] = START_POSITION;
+        } else {
+            moveSnakeBackToStartCoordinate(levelMap);
         }
     }
 }
@@ -41,10 +44,13 @@ void moveSnakeLeft(LevelMap *const levelMap)
     if ((levelMap != NULL) && isValidLevelMap(*levelMap)) {
         LevelMapCoordinate *coordinate = &(levelMap->snakeCoordinate);
 
-        if (coordinate->width > 0) {
-            levelMap->map[coordinate->height][coordinate->width] = AVAILABLE_SPACE;
-            coordinate->width--;
+        levelMap->map[coordinate->height][coordinate->width] = AVAILABLE_SPACE;
+        coordinate->width--;
+
+        if (!hitsWall(*levelMap, *coordinate)) {
             levelMap->map[coordinate->height][coordinate->width] = START_POSITION;
+        } else {
+            moveSnakeBackToStartCoordinate(levelMap);
         }
     }
 }
@@ -56,7 +62,12 @@ void moveSnakeDown(LevelMap *const levelMap)
 
         levelMap->map[coordinate->height][coordinate->width] = AVAILABLE_SPACE;
         coordinate->height++;
-        levelMap->map[coordinate->height][coordinate->width] = START_POSITION;
+
+        if (!hitsWall(*levelMap, *coordinate)) {
+            levelMap->map[coordinate->height][coordinate->width] = START_POSITION;
+        } else {
+            moveSnakeBackToStartCoordinate(levelMap);
+        }
     }
 }
 
@@ -67,7 +78,12 @@ void moveSnakeRight(LevelMap *const levelMap)
 
         levelMap->map[coordinate->height][coordinate->width] = AVAILABLE_SPACE;
         coordinate->width++;
-        levelMap->map[coordinate->height][coordinate->width] = START_POSITION;
+        
+        if (!hitsWall(*levelMap, *coordinate)) {
+            levelMap->map[coordinate->height][coordinate->width] = START_POSITION;
+        } else {
+            moveSnakeBackToStartCoordinate(levelMap);
+        }
     }
 }
 
@@ -82,6 +98,17 @@ Boolean hitsWall(
     }
 
     return false;
+}
+
+void moveSnakeBackToStartCoordinate(LevelMap *const levelMap)
+{
+    if ((levelMap != NULL) && isValidLevelMap(*levelMap)) {
+        LevelMapCoordinate *snake = &(levelMap->snakeCoordinate);      
+        snake->height = levelMap->startCoordinate.height;
+        snake->width = levelMap->startCoordinate.width;
+
+        levelMap->map[snake->height][snake->width] = START_POSITION;
+    }
 }
 
 void refreshSnakeLevelMap(const LevelMap oldMap, const LevelMap newMap)
