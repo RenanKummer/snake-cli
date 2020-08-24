@@ -18,34 +18,6 @@
 void moveSnake(LevelMap *const levelMap, const CommandKey commandKey);
 
 /**
- * Move the Snake character one row up. Only updates the map.
- * 
- * @param levelMap The level map.
- */
-void moveSnakeUp(LevelMap *const levelMap);
-
-/**
- * Move the Snake character one column to the left. Only updates the map.
- * 
- * @param levelMap The level map.
- */
-void moveSnakeLeft(LevelMap *const levelMap);
-
-/**
- * Move the Snake character one row down. Only updates the map.
- * 
- * @param levelMap The level map.
- */
-void moveSnakeDown(LevelMap *const levelMap);
-
-/**
- * Move the Snake character one column to the right. Only updates the map.
- * 
- * @param levelMap The level map.
- */
-void moveSnakeRight(LevelMap *const levelMap);
-
-/**
  * Check if moving to new coordinate hits a wall.
  * 
  * @param levelMap      The level map.
@@ -57,13 +29,6 @@ Boolean hitsWall(
     const LevelMap levelMap, 
     const LevelMapCoordinate newCoordinate
 );
-
-/**
- * Move Snake character back to start coordinate.
- * 
- * @param levelMap The level map.
- */
-void moveSnakeBackToStartCoordinate(LevelMap *const levelMap);
 
 /**
  * Refresh the level map on the screen. Only refreshes modified characters.

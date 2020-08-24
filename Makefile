@@ -94,7 +94,7 @@ gameplay.CommandRunnerTest: UnitTest.o CommandRunnerTest.o CommandRunner.o\
 							CommandLineInterface.o StringUtils.o\
 							StringConverter.o
 	@echo building $(TEST_BIN_DIR)/gameplay.CommandRunnerTest.exe
-	@gcc -o $(TEST_BIN_DIR)/gameplay.CommandReaderTest.exe\
+	@gcc -o $(TEST_BIN_DIR)/gameplay.CommandRunnerTest.exe\
 	    $(TEST_OBJ_DIR)/CommandRunnerTest.o $(MAIN_OBJ_DIR)/UnitTest.o\
 		$(MAIN_OBJ_DIR)/CommandRunner.o $(MAIN_OBJ_DIR)/LevelMap.o\
 		$(MAIN_OBJ_DIR)/WindowCoordinate.o $(MAIN_OBJ_DIR)/WindowSize.o\
