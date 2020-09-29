@@ -39,6 +39,16 @@ mingw32-make check
 
 ## University Info
 
-| University                   | Location                | Course           | Class                    |
-|------------------------------|-------------------------|------------------|--------------------------|
-| [UFRGS](http://www.ufrgs.br) | Porto Alegre RS, Brazil | Computer Science | Algorithms & Programming |
+<dl>
+  <dt><strong>What is the name of your university?</strong></dt>
+  <dd>Universidade Federal do Rio Grande do Sul (aka UFRGS). <a href="http://www.ufrgs.br">Here is the official website</a>.</dd>
+  
+  <dt><strong>Where is your university located?</strong></dt>
+  <dd>Porto Alegre RS, Brazil.</dd>
+  
+  <dt><strong>What course do you study?</strong></dt>
+  <dd>Bachelor in Computer Science.</dd>
+  
+  <dt><strong>Which class is this project for?</strong></dt>
+  <dd>Algorithms & Programming - in this class we learn the basics of programming using C.</dd>
+</dl>
