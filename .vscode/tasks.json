@@ -23,20 +23,13 @@
         },
         {
             "label": "test",
-            "detail": "Run unit tests",
+            "detail": "Build unit test executables",
             "type": "shell",
             "command": "mingw32-make check",
             "group": {
                 "kind": "test",
                 "isDefault": true
             }
-        },
-        {
-            "label": "test-manual",
-            "detail": "Build manual unit tests",
-            "type": "shell",
-            "command": "mingw32-make check-manual",
-            "group": "test"
         },
         {
             "label": "clean",
