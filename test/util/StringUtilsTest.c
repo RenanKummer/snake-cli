@@ -27,7 +27,7 @@ int main()
         testConcatenateStrings_Modifiable()
     };
 
-    const char *const identifier = "type.StringUtilsTest";
+    const char *const identifier = "util.StringUtilsTest";
     return printTestResults(identifier, results, NUM_TESTS);
 }
 

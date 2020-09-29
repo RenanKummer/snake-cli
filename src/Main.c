@@ -3,10 +3,22 @@
  * 
  * @author Renan Kummer [ GitHub: @RenanKummer ]
  */
-#include <stdlib.h>
-#include <stdio.h>
+#include "config/CliWindowConfig.h"
+#include "engine/CommandLineInterface.h"
+#include "gameplay/CommandRunner.h"
+#include "gameplay/LevelMap.h"
+#include "gameplay/CommandReader.h"
 
 int main(int argc, char **argv)
 {
-    printf("Not yet implemented\n");
+    CliWindowConfig cliWindowConfig = initializeCliWindow();
+    
+    LevelMap levelMap = getLevelMap();
+    printLevelMap(levelMap);
+
+    while (true) {
+        while (!hasKeyboardHit()) {}
+        CommandKey commandKey = readCommandKeyNoEcho();
+        moveSnake(&levelMap, commandKey);
+    }
 }

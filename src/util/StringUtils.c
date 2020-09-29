@@ -11,6 +11,11 @@ Boolean equalsString(const char *const str1, const char *const str2)
     return (str1 == NULL) && (str2 == NULL);
 }
 
+Boolean isEmptyString(const char *const str)
+{
+    return (str == NULL) || equalsString(str, "");
+}
+
 char* concatenateStrings(const char *const str1, const char *const str2)
 {
     char *concatenatedString = NULL;
