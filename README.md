@@ -14,7 +14,7 @@ Add `{mingw-w64 directory}\bin` and `{powershell directory}\{version}` to your s
 This project has custom-built tasks for Visual Studio Code. To run tasks either
 
 1. Go to `Terminal\Run Task...`, or
-2. Press `Ctrl + P` and enter `task [task-name]`.
+2. Press `Ctrl + P` and enter `task {task name}`.
 
 <br>
 
