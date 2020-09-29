@@ -1,5 +1,5 @@
-#ifndef INCLUDE_CONFIG_CLIWINDOWCONFIG_H
-#define INCLUDE_CONFIG_CLIWINDOWCONFIG_H
+#ifndef SRC_MAIN_HEADERS_CONFIG_CLIWINDOWCONFIG_H
+#define SRC_MAIN_HEADERS_CONFIG_CLIWINDOWCONFIG_H
 /**
  * Configurations related with Command Line Interface window.
  * 
@@ -15,7 +15,7 @@ typedef struct CliWindowConfig
 } CliWindowConfig;
 
 /**
- * Perform configurations required when starting the game.
+ * Perform configurations required when booting the game window.
  * 
  * @return The configurations set.
  */
@@ -28,4 +28,4 @@ CliWindowConfig initializeCliWindow();
  */
 WindowSize configureWindowSize();
 
-#endif // INCLUDE_CONFIG_CLIWINDOWCONFIG_H
+#endif // SRC_MAIN_HEADERS_CONFIG_CLIWINDOWCONFIG_H
