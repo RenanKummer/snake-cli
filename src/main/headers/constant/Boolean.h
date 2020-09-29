@@ -1,5 +1,5 @@
-#ifndef INCLUDE_CONSTANT_BOOLEAN_H
-#define INCLUDE_CONSTANT_BOOLEAN_H
+#ifndef SRC_MAIN_HEADERS_CONSTANT_BOOLEAN_H
+#define SRC_MAIN_HEADERS_CONSTANT_BOOLEAN_H
 /**
  * Enumeration type for boolean values. This type is compliant with standard C.
  * 
@@ -12,4 +12,4 @@ typedef enum Boolean
     true  = 1
 } Boolean;
 
-#endif // INCLUDE_CONSTANT_BOOLEAN_H
+#endif // SRC_MAIN_HEADERS_CONSTANT_BOOLEAN_H

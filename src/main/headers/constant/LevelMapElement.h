@@ -1,5 +1,5 @@
-#ifndef INCLUDE_CONSTANT_LEVELMAPELEMENT_H
-#define INCLUDE_CONSTANT_LEVELMAPELEMENT_H
+#ifndef SRC_MAIN_HEADERS_CONSTANT_LEVELMAPELEMENT_H
+#define SRC_MAIN_HEADERS_CONSTANT_LEVELMAPELEMENT_H
 /**
  * Enumeration type for level map's individual elements.
  * 
@@ -18,4 +18,4 @@ typedef enum LevelMapElement
     APPLE = '@'
 } LevelMapElement;
 
-#endif // INCLUDE_CONSTANT_LEVELMAPELEMENT_H
+#endif // SRC_MAIN_HEADERS_CONSTANT_LEVELMAPELEMENT_H

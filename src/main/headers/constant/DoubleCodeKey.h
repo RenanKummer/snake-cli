@@ -1,5 +1,5 @@
-#ifndef INCLUDE_CONSTANT_DOUBLECODEKEY_H
-#define INCLUDE_CONSTANT_DOUBLECODEKEY_H
+#ifndef SRC_MAIN_HEADERS_CONSTANT_DOUBLECODEKEY_H
+#define SRC_MAIN_HEADERS_CONSTANT_DOUBLECODEKEY_H
 /**
  * Enumeration type for double code keys. These values identify keys that
  * are not part of the ASCII table.
@@ -17,4 +17,4 @@ typedef enum DoubleCodeKey
     ARROW_RIGHT_KEY = 77
 } DoubleCodeKey;
 
-#endif // INCLUDE_CONSTANT_DOUBLECODEKEY_H
+#endif // SRC_MAIN_HEADERS_CONSTANT_DOUBLECODEKEY_H
