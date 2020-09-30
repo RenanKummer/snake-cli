@@ -48,11 +48,11 @@ Boolean resizeWindow(const WindowSize windowSize)
         const char *const heightString = convertIntToString(windowSize.height);
         const char *const widthString = convertIntToString(windowSize.width);
 
-        char *modeWithHeight = concatenateStrings("mode ", widthString);
+        char *modeWithWidth = concatenateStrings("mode ", widthString);
         free((void*) widthString);
 
-        char *modeWithComma = concatenateStrings(modeWithHeight, ",");
-        free((void*) modeWithHeight);
+        char *modeWithComma = concatenateStrings(modeWithWidth, ",");
+        free((void*) modeWithWidth);
 
         const char *const resizeMeasures = 
             concatenateStrings(modeWithComma, heightString);
