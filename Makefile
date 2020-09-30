@@ -33,7 +33,7 @@ SCRIPTS_DIR   = $(RESOURCES_DIR)/scripts
 # =============================================================================
 snake-cli: config converter engine gameplay util
 	@echo building $(MAIN_BIN_DIR)/snake-cli.exe
-	@gcc -o $(MAIN_BIN_DIR)/snake-cli.exe $(MAIN_SRC_DIR)/Main.c\
+	@gcc -o $(MAIN_BIN_DIR)/snake-cli.exe $(MAIN_SRC_DIR)/SnakeCliApplication.c\
 	    $(MAIN_OBJ_DIR)/*.o -I$(HEADERS_DIR)
 
 
