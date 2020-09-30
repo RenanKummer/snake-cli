@@ -1,5 +1,5 @@
-#ifndef INCLUDE_ENGINE_WINDOWCOORDINATE_H
-#define INCLUDE_ENGINE_WINDOWCOORDINATE_H
+#ifndef SRC_MAIN_HEADERS_ENGINE_WINDOWCOORDINATE_H
+#define SRC_MAIN_HEADERS_ENGINE_WINDOWCOORDINATE_H
 /**
  * Structure defining the coordinates of the Command Line Interface window.
  * 
@@ -45,4 +45,4 @@ Boolean isValidWindowCoordinate(
 );
 
 
-#endif // INCLUDE_ENGINE_WINDOWCOORDINATE_H
+#endif // SRC_MAIN_HEADERS_ENGINE_WINDOWCOORDINATE_H

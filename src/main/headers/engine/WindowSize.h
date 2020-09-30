@@ -1,5 +1,5 @@
-#ifndef INCLUDE_ENGINE_WINDOWSIZE_H
-#define INCLUDE_ENGINE_WINDOWSIZE_H
+#ifndef SRC_MAIN_HEADERS_ENGINE_WINDOWSIZE_H
+#define SRC_MAIN_HEADERS_ENGINE_WINDOWSIZE_H
 /**
  * Structure defining the dimensions of the Command Line Interface window.
  * 
@@ -35,4 +35,4 @@ Boolean equalsWindowSize(
  */
 Boolean isValidWindowSize(const WindowSize windowSize);
 
-#endif // INCLUDE_ENGINE_WINDOWSIZE_H
+#endif // SRC_MAIN_HEADERS_ENGINE_WINDOWSIZE_H
