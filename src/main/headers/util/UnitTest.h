@@ -1,5 +1,5 @@
-#ifndef INCLUDE_UTIL_UNITTEST_H
-#define INCLUDE_UTIL_UNITTEST_H
+#ifndef SRC_MAIN_HEADERS_UTIL_UNITTEST_H
+#define SRC_MAIN_HEADERS_UTIL_UNITTEST_H
 /**
  * Functions, structures and common includes to support unit testing.
  * 
@@ -23,4 +23,4 @@ int printTestResults(
     const unsigned resultsSize
 );
 
-#endif // INCLUDE_UTIL_UNITTEST_H
+#endif // SRC_MAIN_HEADERS_UTIL_UNITTEST_H

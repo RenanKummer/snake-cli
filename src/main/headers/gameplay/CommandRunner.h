@@ -1,5 +1,5 @@
-#ifndef INCLUDE_GAMEPLAY_COMMANDRUNNER_H
-#define INCLUDE_GAMEPLAY_COMMANDRUNNER_H
+#ifndef SRC_MAIN_HEADERS_GAMEPLAY_COMMANDRUNNER_H
+#define SRC_MAIN_HEADERS_GAMEPLAY_COMMANDRUNNER_H
 /**
  * Runner functions for game commands.
  * 
@@ -38,4 +38,4 @@ Boolean hitsWall(
  */
 void refreshSnakeLevelMap(const LevelMap oldMap, const LevelMap newMap);
 
-#endif // INCLUDE_GAMEPLAY_COMMANDRUNNER_H
+#endif // SRC_MAIN_HEADERS_GAMEPLAY_COMMANDRUNNER_H

@@ -1,5 +1,5 @@
-#ifndef INCLUDE_UTIL_STRINGUTILS_H
-#define INCLUDE_UTIL_STRINGUTILS_H
+#ifndef SRC_MAIN_HEADERS_UTIL_STRINGUTILS_H
+#define SRC_MAIN_HEADERS_UTIL_STRINGUTILS_H
 /**
  * Extends features from C Standard Library's string.h header file.
  * 
@@ -41,4 +41,4 @@ char* concatenateStrings(
     const char *const endString
 );
 
-#endif // INCLUDE_UTIL_STRINGUTILS_H
+#endif // SRC_MAIN_HEADERS_UTIL_STRINGUTILS_H

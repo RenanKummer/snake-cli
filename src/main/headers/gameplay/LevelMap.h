@@ -1,5 +1,5 @@
-#ifndef INCLUDE_GAMEPLAY_LEVELMAP_H
-#define INCLUDE_GAMEPLAY_LEVELMAP_H
+#ifndef SRC_MAIN_HEADERS_GAMEPLAY_LEVELMAP_H
+#define SRC_MAIN_HEADERS_GAMEPLAY_LEVELMAP_H
 /**
  * Structures and functions to handle level maps.
  * 

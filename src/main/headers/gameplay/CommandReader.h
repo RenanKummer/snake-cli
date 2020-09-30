@@ -1,5 +1,5 @@
-#ifndef INCLUDE_GAMEPLAY_COMMANDREADER_H
-#define INCLUDE_GAMEPLAY_COMMANDREADER_H
+#ifndef SRC_MAIN_HEADERS_GAMEPLAY_COMMANDREADER_H
+#define SRC_MAIN_HEADERS_GAMEPLAY_COMMANDREADER_H
 /**
  * Functions to read and parse commands.
  * 
@@ -93,4 +93,4 @@ Boolean isPauseCommandKey(const int inputKey);
  */
 Boolean isEndGameCommandKey(const int inputKey);
 
-#endif // INCLUDE_GAMEPLAY_COMMANDREADER_H
+#endif // SRC_MAIN_HEADERS_GAMEPLAY_COMMANDREADER_H
